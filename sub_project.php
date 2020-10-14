@@ -10,9 +10,10 @@ include("header.php");
 include("navbar.php");
 
 $pid = $_GET['pid'];
-$sql = "SELECT * FROM project  as p
+$sql = "SELECT p.*, y.yname,u.office FROM project  as p
         INNER JOIN sys_year as y  ON  p.yid = y.yid  
         INNER JOIN user as u  ON p.uid = p.uid 
+        INNER JOIN 
         WHERE p.pid = $pid";
 $result = dbQuery($sql);
 $row = dbFetchAssoc($result);
@@ -51,42 +52,34 @@ $row = dbFetchAssoc($result);
     </div><!-- row  -->
 </div>
 
-<div class="card">
-    <div class="card-header">
-        Header
-    </div>
-    <div class="card-body">
-        <h4 class="card-title">Title</h4>
-        <p class="card-text">Text</p>
-    </div>
-    <div class="card-footer text-muted">
-        Footer
-    </div>
-</div>
-
-
 <div class="container-fluid">
 <div class="row  mt-2">
         <div class="col-md-12">
             <div class="card">
-                <div class ="card-header">รายการทรัพย์สิน</div>
+                <div class ="card-header">
+                    <span class="font-weight-bold"><i class="fas fa-th"></i>  รายการทรัพย์สินโครงการ</span>
+                    <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId">
+                    <i class="fas fa-plus"></i> เพิ่มรายการ
+                    </button>
+                </div>
+                
                 <div class="card-body">
-                   <table class="table table-striped">
+                   <table class="table table-striped table-bordered">
                        <thead class="thead-inverse">
                            <tr>
-                               <th>ที่</th>
-                               <th>รหัสครุภัณฑ์</th>
-                               <th>รายการ</th>
-                               <th>รหัสสินทรัพย์</th>
-                               <th>รายละเอียด</th>
-                               <th>จำนวน</th>
-                               <th>ราคา/หน่วย</th>
-                               <th>วิธีการได้มา</th>
-                               <th>วันตรวจรับ</th>
-                               <th>เลขที่สัญญา</th>
-                               <th>อายุการใช้งาน</th>
-                               <th>หน่วยงานใช้ทรัพย์สิน</th>
-                               <th>สถานะ</th>
+                               <th><h6>ที่</h6></th>
+                               <th><h6>รหัสครุภัณฑ์</h6></th>
+                               <th><h6>รายการ</h6></th>
+                               <th><h6>รหัสสินทรัพย์</h6></th>
+                               <th><h6>รายละเอียด</h6></th>
+                               <th><h6>จำนวน</h6></th>
+                               <th><h6>ราคา/หน่วย</h6></th>
+                               <th><h6>วิธีการได้มา</h6></th>
+                               <th><h6>วันตรวจรับ</h6></th>
+                               <th><h6>เลขที่สัญญา</h6></th>
+                               <th><h6>อายุการใช้งาน</h6></th>
+                               <th><h6>หน่วยงานใช้ทรัพย์สิน</h6></th>
+                               <th><h6>สถานะ</h6></th>
                            </tr>
                            </thead>
                            <tbody>
@@ -94,9 +87,29 @@ $row = dbFetchAssoc($result);
                                    <td scope="row"></td>
                                    <td></td>
                                    <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
                                </tr>
                                <tr>
                                    <td scope="row"></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
                                    <td></td>
                                    <td></td>
                                </tr>
@@ -117,14 +130,14 @@ $row = dbFetchAssoc($result);
 <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-plus"></i> เพิ่มรายการ</h5>
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title"><i class="fas fa-plus"></i> เพิ่มรายการครุภัณฑ์</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form method="post" action="#">
 
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
@@ -171,21 +184,20 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">รายละเอียด</span>
                         </div>
-                        <textarea name="descript" id="descript" cols="50" rows="10"></textarea>
+                        <textarea name="descript" id="descript" cols="50" rows="2"></textarea>
                     </div>
 
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">จำนวน</span>
                         </div>
-                        <input type="text" id="amount" name="amount"  class="form-control">
-                    </div>
-
-                    <div class="input-group mb-1">
+                        <input type="text" id="amount" name="amount"  class="form-control col-4">
+                        
                         <div class="input-group-prepend">
+                        <label>&nbsp;</label>
                             <span class="input-group-text" id="basic-addon1">ราคา/หน่วย</span>
                         </div>
-                        <input type="text" id="price" name="price"  class="form-control col-2">
+                        <input type="text" id="price" name="price"  class="form-control col-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">บาท</span>
                         </div>
@@ -202,26 +214,102 @@ $row = dbFetchAssoc($result);
                             <option value="3">เฉพาะเจาะจง</option>
                             <option value="4">อื่นๆ</option>
                         </select>
-                    </div>
 
-                    <div class="input-group mb-1">
                         <div class="input-group-prepend">
+                        <label>&nbsp;</label>
                             <span class="input-group-text" id="basic-addon1">วันตรวจรับ</span>
                         </div>
                         <input type="date" id="amount" name="amount"  class="form-control col-3">
                     </div>
-                    
 
-                </form>
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">เลขที่สัญญา</span>
+                        </div>
+                        <input type="text" id="lawID" name="lawID"  class="form-control">
+
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">อายุการใช้งาน</span>
+                        </div>
+                        <input type="age" id="age" name="lawID"  class="form-control">
+                    </div>
+
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">หน่วยงานที่ใช้</span>
+                        </div>
+                        <input type="text" id="reciveOffice" name="reciveOffice"  class="form-control" col-6>
+
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">สภาพ</span>
+                        </div>
+                        <select name="status" id="status" class="form-control col-3">
+                            <option value="0">-- เลือก --</option>
+                            <option value="1">ดี</option>
+                            <option value="2">พอใช้งานได้</option>
+                            <option value="3">ชำรุด</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="pid" id="pid" value=<?=$pid?>>
+            </div>
+            <div class="card-footer">
+                <center>
+                    <button class="btn btn-success  float-center" type="submit" name="save" id="save">
+                        <i class="fa fa-save"></i> บันทึก
+                    </button>
+                </center>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
 
+<?php   
+// Insert subproject   
+if(isset($_POST['save'])){
+    
+    //search recid
+    $sql_recid = "SELECT recid FROM subproject WHERE pid = $pid";
+    $result_recid = dbQuery($sql_recid);
+    $numrow = dbNumRows($result_recid);
+    if($numrow == 0 ){
+        $numrow = 1;
+    }else{
+        $numrow++;
+    }
+
+    $recid= $numrow;
+    $listname = $_POST['listname'];
+    $moneyID = $_POST['moneyID'];
+    $descript = $_POST['descript'];
+    $amount = $_POST['amount'];
+    $price = $_POST['price'];
+    $howto = $_POST['howto'];
+    $reciveDate = $_POST['reciveDate'];
+    $lawID = $_POST['lawID'];
+    $age = $_POST['age'];
+    $reciveOffice = $_POST['reciveOffice'];
+    $status = $_POST['status'];
+    $pid= $_POST['pid'];
+    $tid = $_POST['tid'];
+    $cid = $_POST['cid'];
+    $gid = $_POST['gid'];
+    
+    $sql_insert ="INSERT INTO subproject(
+        recid, listname, fedID, moneyID, descript, amount, price, howto, reciveDate, lawID, age, reciveOffice, status, pid, tid, cid, gid
+    ) VALUES($recid, '$listname', $fedID, $moneyID, '$descript', '$amount', $price, '$howto', '$reciveDate', $lawID, '$age',
+        '$reciveOffice, $status, $pid, $tid, $cid, $gid
+    ) ";
+
+    $result = dbQuery($sql_insert);
+    if($result){
+        echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
+    }
+}
+?>
 
 
 <script>
