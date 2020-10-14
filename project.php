@@ -78,7 +78,7 @@ $(document).ready(function(){
                 <table class="table table-bordered table-hover table-striped" id="myTable">
                         <thead class="bg-secondary text-white">
                             <th>ID</th>
-                            <th>ชื่อโครงการ/กิจกรรม</th>
+                            <th>ชื่อโครงการ/กิจกรรมddd</th>
                             <th>งบประมาณ</th>
                             <th>ปีงบประมาณ</th>
                             <th>หน่วยรับผิดชอบ</th>
