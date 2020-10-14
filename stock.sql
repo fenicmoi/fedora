@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 13, 2020 at 02:53 AM
+-- Generation Time: Oct 14, 2020 at 10:31 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `federal` (
   `owner` text NOT NULL,
   `status` int(11) NOT NULL,
   `subID` int(11) NOT NULL,
-  `date_add` date NOT NULL,
+  `date_add` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`fid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -82,17 +82,15 @@ CREATE TABLE IF NOT EXISTS `project` (
   `uid` int(5) NOT NULL,
   `created_at` date NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `project`
 --
 
 INSERT INTO `project` (`pid`, `recid`, `name`, `money`, `yid`, `uid`, `created_at`) VALUES
-(2, 1, 'โครงการพัฒนาอุตสาหกรรมท่องเที่ยวเชิงอนุรักษ์เข้มแข็งสู่ประชาคมอาเซียน', 0, 1, 1, '2020-10-08'),
-(5, 2, 'โครงการผลผลิตทางการเกษตรขับเคลื่อนเศรษฐกิจเข้มแข็ง', 0, 1, 1, '2020-10-08'),
-(6, 1, 'ทดสอบ', 0, 5, 5, '2020-10-08'),
-(7, 2, 'test', 0, 5, 5, '2020-10-08');
+(11, 1, 'โครงการพัฒนาอุตสาหกรรมท่องเที่ยวเชิงอนุรักษ์เข้มแข็งสู่ประชาคมอาเซียน', 0, 1, 2, '2020-10-14'),
+(12, 2, 'โครงการผลผลิตทางการเกษตรขับเคลื่อนเศรษฐกิจเข้มแข็ง', 0, 1, 2, '2020-10-14');
 
 -- --------------------------------------------------------
 
@@ -237,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `st_typetype` (
   `cid` int(11) NOT NULL,
   `gid` int(11) NOT NULL,
   PRIMARY KEY (`tid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `st_typetype`
@@ -251,7 +249,9 @@ INSERT INTO `st_typetype` (`tid`, `tnumber`, `tname`, `tstatus`, `cid`, `gid`) V
 (5, '005', 'ตู้ทำไอศครียม', 1, 1, 29),
 (6, '006', 'ตู้ทำน้ำแข็ง', 1, 1, 29),
 (7, '007', 'ตู้เก็บอาหารแช่แข็ง', 1, 1, 29),
-(8, '001', 'ปืนพกอัตโนมัติขนาดต่าง ๆ', 1, 12, 1);
+(8, '001', 'ปืนพกอัตโนมัติขนาดต่าง ๆ', 1, 12, 1),
+(9, '002', 'ปืนพกลูกโม่ขนาดต่างๆ', 1, 12, 1),
+(10, '003', 'ปืนกลมือขนาดต่างๆ', 1, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -261,11 +261,25 @@ INSERT INTO `st_typetype` (`tid`, `tnumber`, `tname`, `tstatus`, `cid`, `gid`) V
 
 DROP TABLE IF EXISTS `subproject`;
 CREATE TABLE IF NOT EXISTS `subproject` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sid` int(11) NOT NULL AUTO_INCREMENT,
   `recid` int(11) NOT NULL,
-  `name` varchar(200) NOT NULL,
-  `projectID` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `listname` varchar(200) NOT NULL COMMENT 'ชื่อทรัพย์สิน',
+  `fedID` int(11) NOT NULL COMMENT 'รหัสทรัพย์สิน',
+  `moneyID` int(11) NOT NULL COMMENT 'รหัสสินทรัพย์',
+  `descript` text NOT NULL COMMENT 'รายละเอียด',
+  `amount` varchar(50) NOT NULL COMMENT 'จำนวน',
+  `price` int(11) NOT NULL COMMENT 'ราคาต่อหน่วย',
+  `howto` varchar(50) NOT NULL COMMENT 'วิธีการได้มา',
+  `reciveDate` date NOT NULL COMMENT 'วันที่ตรวจรับ',
+  `lawID` int(11) NOT NULL COMMENT 'เลขที่สัญญา',
+  `age` varchar(100) NOT NULL COMMENT 'อายุการใช้งาน',
+  `reciveOffice` int(11) NOT NULL COMMENT 'หน่วยงานที่ใช้',
+  `status` int(5) NOT NULL COMMENT 'สภาพ',
+  `pid` int(11) NOT NULL COMMENT 'รหัสโครงการ',
+  `tid` int(11) NOT NULL COMMENT 'ประเภทครุภัณฑ์',
+  `cid` int(11) NOT NULL COMMENT 'ชนิดครุภัณฑ์',
+  `gid` int(11) NOT NULL COMMENT 'กลุ่มครุภัณฑ์',
+  PRIMARY KEY (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -296,6 +310,30 @@ INSERT INTO `sys_year` (`yid`, `yname`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_data`
+--
+
+DROP TABLE IF EXISTS `tbl_data`;
+CREATE TABLE IF NOT EXISTS `tbl_data` (
+  `data_id` int(11) NOT NULL AUTO_INCREMENT,
+  `data_text` varchar(255) NOT NULL,
+  `data_select` int(5) NOT NULL,
+  PRIMARY KEY (`data_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_data`
+--
+
+INSERT INTO `tbl_data` (`data_id`, `data_text`, `data_select`) VALUES
+(1, 'ปืน11', 1),
+(9, 'มีด', 1),
+(10, 'ดาบ', 2),
+(11, 'ทดสอบการทำงาน', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -317,7 +355,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`ID`, `Username`, `Password`, `Firstname`, `Lastname`, `Userlevel`, `office`) VALUES
 (1, 'admin', 'hellojava', 'สมศักดิ์', 'แก้วเกลี้ยง', 'A', 'สำนักงานจังหวัดพัทลุง'),
-(2, 'user', 'hellojava', 'bbbb', 'bbbb', 'M', 'สำนักงานจังหวัดพัทลุง');
+(2, 'user1', 'hellojava', 'สมมุติ', 'สุดหล่อ', 'M', 'ที่ทำการปกครองจังหวัด');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
