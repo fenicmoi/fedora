@@ -1,6 +1,10 @@
 
 
-<?php  include("library/database.php");?>
+<?php  
+//include("library/database.php");
+include("header.php");
+?>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
    <link rel="stlesheet"  href="css/style.css">
@@ -83,7 +87,7 @@
                 <!-- <div  id="msg" class=" d-flex alert alert-danger border-danger">ไม่พบข้อมูลผู้ใช้</div> -->
 				<div class="d-flex justify-content-center form_container">
                     
-                    <form action="checkuser" method="post"  id="frm-login" name="frm-login">
+                    <form action="checkuser.php" method="post"  id="frm-login" name="frm-login">
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>

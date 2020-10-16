@@ -10,10 +10,9 @@ include("header.php");
 include("navbar.php");
 
 $pid = $_GET['pid'];
-$sql = "SELECT p.*, y.yname,u.office FROM project  as p
+$sql = "SELECT * FROM project  as p
         INNER JOIN sys_year as y  ON  p.yid = y.yid  
         INNER JOIN user as u  ON p.uid = p.uid 
-        INNER JOIN 
         WHERE p.pid = $pid";
 $result = dbQuery($sql);
 $row = dbFetchAssoc($result);
@@ -52,6 +51,8 @@ $row = dbFetchAssoc($result);
     </div><!-- row  -->
 </div>
 
+
+
 <div class="container-fluid">
 <div class="row  mt-2">
         <div class="col-md-12">
@@ -64,7 +65,7 @@ $row = dbFetchAssoc($result);
                 </div>
                 
                 <div class="card-body">
-                   <table class="table table-striped table-bordered">
+                   <table class="table table-striped table-bordered" id="myTable">
                        <thead class="thead-inverse">
                            <tr>
                                <th><h6>ที่</h6></th>
@@ -83,36 +84,27 @@ $row = dbFetchAssoc($result);
                            </tr>
                            </thead>
                            <tbody>
-                               <tr>
-                                   <td scope="row"></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                               </tr>
-                               <tr>
-                                   <td scope="row"></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                               </tr>
+                                <?php   
+                                    $sql = "SELECT * FROM subproject WHERE pid=$pid ORDER BY sid ASC";
+                                    $result = dbQuery($sql);
+                                    while ($row = dbFetchArray($result)) {
+                                      echo "<tr>
+                                                <td>".$row['recid']."</td>
+                                                <td>".$row['fedID']."</td>
+                                                <td>".$row['listname']."</td>
+                                                <td>".$row['moneyID']."</td>
+                                                <td>".$row['descript']."</td>
+                                                <td>".$row['amount']."</td>
+                                                <td>".$row['price']."</td>
+                                                <td>".$row['howto']."</td>
+                                                <td>".$row['reciveDate']."</td>
+                                                <td>".$row['lawID']."</td>
+                                                <td>".$row['age']."</td>
+                                                <td>".$row['reciveOffice']."</td>
+                                                <td>".$row['status']."</td>
+                                            </tr>";
+                                    }
+                                ?>
                            </tbody>
                    </table>
                 </div>
@@ -120,11 +112,6 @@ $row = dbFetchAssoc($result);
         </div><!-- col-md-12 -->
     </div><!-- row  -->
 </div> <!-- container 2 -->
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
-  Launch
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -209,17 +196,17 @@ $row = dbFetchAssoc($result);
                         </div>
                         <select name="howto" id="howto" class="form-control col-3">
                             <option value="0">-- เลือก --</option>
-                            <option value="1">ประกาศเชิญชวน</option>
-                            <option value="2">คัดเลือก</option>
-                            <option value="3">เฉพาะเจาะจง</option>
-                            <option value="4">อื่นๆ</option>
+                            <option value="ประกาศเชิญชวน">ประกาศเชิญชวน</option>
+                            <option value="คัดเลือก">คัดเลือก</option>
+                            <option value="เฉพาะเจาะจง">เฉพาะเจาะจง</option>
+                            <option value="อื่นๆ">อื่นๆ</option>
                         </select>
 
                         <div class="input-group-prepend">
                         <label>&nbsp;</label>
                             <span class="input-group-text" id="basic-addon1">วันตรวจรับ</span>
                         </div>
-                        <input type="date" id="amount" name="amount"  class="form-control col-3">
+                        <input type="date" id="reciveDate" name="reciveDate"  class="form-control col-3">
                     </div>
 
                     <div class="input-group mb-1">
@@ -231,7 +218,7 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">อายุการใช้งาน</span>
                         </div>
-                        <input type="age" id="age" name="lawID"  class="form-control">
+                        <input type="text" id="age" name="age"  class="form-control">
                     </div>
 
                     <div class="input-group mb-1">
@@ -245,9 +232,9 @@ $row = dbFetchAssoc($result);
                         </div>
                         <select name="status" id="status" class="form-control col-3">
                             <option value="0">-- เลือก --</option>
-                            <option value="1">ดี</option>
-                            <option value="2">พอใช้งานได้</option>
-                            <option value="3">ชำรุด</option>
+                            <option value="ดี">ดี</option>
+                            <option value="พอใช้งานได้">พอใช้งานได้</option>
+                            <option value="ชำรุด">ชำรุด</option>
                         </select>
                     </div>
                     <input type="hidden" name="pid" id="pid" value=<?=$pid?>>
@@ -294,16 +281,56 @@ if(isset($_POST['save'])){
     $reciveOffice = $_POST['reciveOffice'];
     $status = $_POST['status'];
     $pid= $_POST['pid'];
-    $tid = $_POST['tid'];
-    $cid = $_POST['cid'];
-    $gid = $_POST['gid'];
+    $tid = $_POST['tnumber'];
+    $cid = $_POST['cnumber'];
+    $gid = $_POST['gnumber'];
+
+    //สร้างหมายเลขครุภัณฑ์
+    // $fedID = $gid."-".$cid."-".$tid."-".$recid;
+
+    //ดึงหมายเลขกลุ่มครุภัณฑ์
+    $sql_gid = "SELECT gnumber FROM st_group WHERE gid = $gid";
+    $result_gid = dbQuery($sql_gid);
+    $row_gid = dbFetchArray($result_id);
+    $gnumber = $row_gid['gnumber'];
+
+
+    //ดึงหมายเลขประเภท
+    $sql_cid = "SELECT cnumber FROM st_class WHERE cid = $cid";
+    $result_cid = dbQuery($sql_cid);
+    $row_cid =dbFetchArray($result_cid);
+    $cnumber = $row_cid['cnumber'];
+
+    //ดึงหมายเลขชนิด  
+    $sql_tid = "SELECT tnumber FROM st_typetype WHERE tid = $tid";
+    $result_tid = dbQuery($sql_tid);
+    $row_tid = dbFetchArray($result_tid);
+    $tnumber = $row_tid['tnumber'];
+
+   
+    //จัดการ format
+    $count  = strlen($tnumber);
+
+    if($count == 1){
+        $mask = "000".$tnumber;
+    }elseif($count ==2){
+        $mask = "00".$tnumber;
+    }elseif($count == 3){
+        $mask = "0".$tnumber;
+    }
+
+    $fedID = $cnumber."-".$tnumber."-".$mask;
+
+
+
+
     
     $sql_insert ="INSERT INTO subproject(
         recid, listname, fedID, moneyID, descript, amount, price, howto, reciveDate, lawID, age, reciveOffice, status, pid, tid, cid, gid
-    ) VALUES($recid, '$listname', $fedID, $moneyID, '$descript', '$amount', $price, '$howto', '$reciveDate', $lawID, '$age',
-        '$reciveOffice, $status, $pid, $tid, $cid, $gid
+    ) VALUES($recid, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
+        '$reciveOffice', '$status', $pid, $tid, $cid, $gid
     ) ";
-
+    print $sql_insert;
     $result = dbQuery($sql_insert);
     if($result){
         echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
