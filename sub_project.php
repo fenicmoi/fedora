@@ -22,7 +22,7 @@ $row = dbFetchAssoc($result);
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -57,10 +57,13 @@ $row = dbFetchAssoc($result);
 <div class="row  mt-2">
         <div class="col-md-12">
             <div class="card">
-                <div class ="card-header">
+                <div class ="card-header bg-secondary text-white">
                     <span class="font-weight-bold"><i class="fas fa-th"></i>  รายการทรัพย์สินโครงการ</span>
+                    <a href="project.php" class="btn btn-primary  float-right">
+                        <i class="fas fa-home"></i> กลับหน้าโครงการ
+                    </a>
                     <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId">
-                    <i class="fas fa-plus"></i> เพิ่มรายการ
+                        <i class="fas fa-plus"></i> เพิ่มรายการ
                     </button>
                 </div>
                 
@@ -130,7 +133,7 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">ชื่อรายการ</span>
                         </div>
-                        <input type="text" id="listname" name="listname"  class="form-control">
+                        <input type="text" id="listname" name="listname"  class="form-control" required>
                     </div>
 
                     <div class="input-group mb-1">
@@ -147,7 +150,7 @@ $row = dbFetchAssoc($result);
                             <span class="input-group-text" id="basic-addon1">ประเภทครุภัณฑ์</span>
                         </div>
                         <select class="select2-single"  name="cnumber" id="cnumber" required>
-                            <option id="clist">--เลือก--</option>
+                            <option id="clist" selected>--เลือก--</option>
                         </select> 
                     </div>
 
@@ -156,7 +159,7 @@ $row = dbFetchAssoc($result);
                             <span class="input-group-text" id="basic-addon1">ชนิดครุภัณฑ์</span>
                         </div>
                         <select class="select2-single"  name="tnumber" id="tnumber" required>
-                            <option id="tlist">--เลือก--</option>
+                            <option id="tlist" selected>--เลือก--</option>
                         </select> 
                     </div>
 
@@ -164,27 +167,27 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">รหัสสินทรัพย์</span>
                         </div>
-                        <input type="text" id="moneyID" name="moneyID"  class="form-control">
+                        <input type="text" id="moneyID" name="moneyID"  class="form-control" placeholder="ใส่ -  หากไม่มี">
                     </div>
 
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">รายละเอียด</span>
                         </div>
-                        <textarea name="descript" id="descript" cols="50" rows="2"></textarea>
+                        <textarea name="descript" id="descript" cols="50" rows="2" required></textarea>
                     </div>
 
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">จำนวน</span>
                         </div>
-                        <input type="text" id="amount" name="amount"  class="form-control col-4">
+                        <input type="text" id="amount" name="amount"  class="form-control col-4" required>
                         
                         <div class="input-group-prepend">
                         <label>&nbsp;</label>
                             <span class="input-group-text" id="basic-addon1">ราคา/หน่วย</span>
                         </div>
-                        <input type="text" id="price" name="price"  class="form-control col-4">
+                        <input type="text" id="price" name="price"  class="form-control col-4" required>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">บาท</span>
                         </div>
@@ -194,7 +197,7 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">วิธีการได้มา</span>
                         </div>
-                        <select name="howto" id="howto" class="form-control col-3">
+                        <select name="howto" id="howto" class="form-control col-3" required>
                             <option value="0">-- เลือก --</option>
                             <option value="ประกาศเชิญชวน">ประกาศเชิญชวน</option>
                             <option value="คัดเลือก">คัดเลือก</option>
@@ -206,31 +209,36 @@ $row = dbFetchAssoc($result);
                         <label>&nbsp;</label>
                             <span class="input-group-text" id="basic-addon1">วันตรวจรับ</span>
                         </div>
-                        <input type="date" id="reciveDate" name="reciveDate"  class="form-control col-3">
+                        <input type="date" id="reciveDate" name="reciveDate"  class="form-control col-3" required>
                     </div>
 
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">เลขที่สัญญา</span>
                         </div>
-                        <input type="text" id="lawID" name="lawID"  class="form-control">
+                        <input type="text" id="lawID" name="lawID"  class="form-control" placeholder="ใส่ - หากไม่ทราบ" required>
 
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">อายุการใช้งาน</span>
                         </div>
-                        <input type="text" id="age" name="age"  class="form-control">
+                        <input type="text" id="age" name="age"  class="form-control" placeholder="ใส่ - หากไม่ทราบ" required>
                     </div>
 
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">หน่วยงานที่ใช้</span>
                         </div>
-                        <input type="text" id="reciveOffice" name="reciveOffice"  class="form-control" col-6>
+                        <input type="text" id="reciveOffice" name="reciveOffice"  class="form-control" required>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">ใช้หลายหน่วยงาน</span>
+                        </div>
+                        <input type="text" id="reciveOffice" name="reciveOffice"  class="form-control" required>
+                        
 
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">สภาพ</span>
                         </div>
-                        <select name="status" id="status" class="form-control col-3">
+                        <select name="status" id="status" class="form-control col-3" required>
                             <option value="0">-- เลือก --</option>
                             <option value="ดี">ดี</option>
                             <option value="พอใช้งานได้">พอใช้งานได้</option>
@@ -286,12 +294,11 @@ if(isset($_POST['save'])){
     $gid = $_POST['gnumber'];
 
     //สร้างหมายเลขครุภัณฑ์
-    // $fedID = $gid."-".$cid."-".$tid."-".$recid;
 
     //ดึงหมายเลขกลุ่มครุภัณฑ์
     $sql_gid = "SELECT gnumber FROM st_group WHERE gid = $gid";
     $result_gid = dbQuery($sql_gid);
-    $row_gid = dbFetchArray($result_id);
+    $row_gid = dbFetchArray($result_gid);
     $gnumber = $row_gid['gnumber'];
 
 
@@ -307,34 +314,45 @@ if(isset($_POST['save'])){
     $row_tid = dbFetchArray($result_tid);
     $tnumber = $row_tid['tnumber'];
 
+   //ตรวจสอบว่ามีครุภัณฑ์อื่นอยู่หรือไม่ 
+   $sql_pid  = "SELECT  recid  FROM subproject WHERE pid = $pid";
+   $result_pid = dbQuery($sql_pid);
+   $num = dbNumRows($result_pid);
    
-    //จัดการ format
-    $count  = strlen($tnumber);
+   if($num == 0){
+       $num = 1;
+   }else{
+       $num++;
+   }
 
-    if($count == 1){
-        $mask = "000".$tnumber;
-    }elseif($count ==2){
-        $mask = "00".$tnumber;
-    }elseif($count == 3){
-        $mask = "0".$tnumber;
+
+
+    //จัดการ format
+    $recid  = strlen($num);
+
+    if($recid == 1){
+        $mask = "000".$num;
+    }elseif($recid ==2){
+        $mask = "00".$num;
+    }elseif($recid == 3){
+        $mask = "0".$num;
     }
 
     $fedID = $cnumber."-".$tnumber."-".$mask;
 
 
-
-
     
     $sql_insert ="INSERT INTO subproject(
         recid, listname, fedID, moneyID, descript, amount, price, howto, reciveDate, lawID, age, reciveOffice, status, pid, tid, cid, gid
-    ) VALUES($recid, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
+    ) VALUES($num, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
         '$reciveOffice', '$status', $pid, $tid, $cid, $gid
     ) ";
-    print $sql_insert;
+   // print $sql_insert;
     $result = dbQuery($sql_insert);
     if($result){
         echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
     }
+
 }
 ?>
 
@@ -356,7 +374,7 @@ if(isset($_POST['save'])){
 						
 						//วนลูปแสดงข้อมูล ที่ได้จาก ตัวแปร data
 						$.each(data, function( index, value ) {
-							//แทรก Elements ใน id province  ด้วยคำสั่ง append
+                            //แทรก Elements ใน id province  ด้วยคำสั่ง append
                               $("#gnumber").append("<option value='"+ value.gid +"'> " +value.gnumber + value.gname + "</option>");
 						});
 					}
