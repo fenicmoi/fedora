@@ -10,7 +10,9 @@ session_start();
                    $Username = $_POST['username'];
                    $Password = $_POST['password'];
 
-                  $sql="SELECT * FROM User Where Username='".$Username."' and Password='".$Password."' ";
+                  $sql="SELECT * FROM user Where Username='".$Username."' and Password='".$Password."' ";
+
+                  print $sql;
 
                   $result = dbQuery($sql);
 				

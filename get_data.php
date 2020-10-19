@@ -1,5 +1,13 @@
 <?php
 	//connect Database
+	/*
+	$servername = "localhost";
+	$username = "phatthalun_dol";
+	$password = "nSSYV5cJ";
+	$db = "phatthalun_stock";
+	*/
+
+
 	$servername = "localhost";
 	$username = "root";
 	$password = "hellojava";

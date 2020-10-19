@@ -62,7 +62,7 @@ include("navbar.php");
                                         </td>
                                          <td><?php echo $row['yname'];?></td>
                                          <td><?php echo $row['office'];?></td>
-                                         <td><a href="sub_project.php?pid=<?=$row['pid']?>" class="btn btn-outline-info btn-sm"><i class="fas fa-plus"></i>รายการครุภัณฑ์</a></td>
+                                         <td><a href="sub_project.php?pid=<?=$row['pid']?>" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i>รายการครุภัณฑ์</a></td>
                                          <td>
                                             <a class="btn btn-outline-warning btn-sm" 
                                                 onclick = "load_edit('<?=$row['pid']?>')" 
