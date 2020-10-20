@@ -90,7 +90,7 @@ $row = dbFetchAssoc($result);
                                 <?php   
                                     $sql = "SELECT * FROM subproject WHERE pid=$pid ORDER BY sid ASC";
                                     $result = dbQuery($sql);
-                                    $count = 0;
+                                    $count = 1;
                                     while ($row = dbFetchArray($result)) {
                                       echo "<tr>
                                                 <td>".$count."</td>
@@ -310,33 +310,19 @@ if(isset($_POST['save'])){
 
         for ($i=0; $i < $numRep; $i++) { 
 
-            $sql_recid = "SELECT recid FROM subproject WHERE pid = $pid";
+            //ส่วนการดึงลดับพัสดุ โดยใช้วิธีการเลือกทั้งรายการในประเภทไปเลย  ในการทำงาน
+            $sql_recid = "SELECT recid FROM subproject WHERE tid = $tid";        
             $result_recid = dbQuery($sql_recid);
             $numrow = dbNumRows($result_recid);
             
-            if($numrow == 0 ){
-                $numrow = 1;
+            if($numrow == 0 ){         
+                $numrow = 1;    //ถ้าไม่มีเลย  ให้  numrow = 1
             }else{
-                $numrow++;
+                $numrow++;      //ถ้ามี numrow +1
             }
-            $recid= $numrow;
-
-                //search recid
-                $sql_recid = "SELECT recid FROM subproject WHERE pid = $pid";
-                $result_recid = dbQuery($sql_recid);
-                $numrow = dbNumRows($result_recid);
-                if($numrow == 0 ){
-                    $numrow = 1;
-                }else{
-                    $numrow++;
-                }
-
-                $recid= $numrow;
 
 
-                //สร้างหมายเลขครุภัณฑ์
-
-                //ดึงหมายเลขกลุ่มครุภัณฑ์
+                //ส่วนการสร้างชุดหมายเลขครุภัณฑ์
                 $sql_gid = "SELECT gnumber FROM st_group WHERE gid = $gid";
                 $result_gid = dbQuery($sql_gid);
                 $row_gid = dbFetchArray($result_gid);
@@ -355,26 +341,16 @@ if(isset($_POST['save'])){
                 $row_tid = dbFetchArray($result_tid);
                 $tnumber = $row_tid['tnumber'];
 
-            //ตรวจสอบว่ามีครุภัณฑ์อื่นอยู่หรือไม่ 
-            $sql_pid  = "SELECT  recid  FROM subproject WHERE pid = $pid AND tid = $tnumber";
-            $result_pid = dbQuery($sql_pid);
-            $num = dbNumRows($result_pid);
-            
-            if($num == 0){
-                $num = 1;
-            }else{
-                $num++;
-            }
 
                 //จัดการ format
-                $recid  = strlen($num);
+                $recid  = strlen($numrow);    //นับจำนวนหลักของจำนวนแถว
 
-                if($recid == 1){
-                    $mask = "000".$num;
-                }elseif($recid ==2){
-                    $mask = "00".$num;
-                }elseif($recid == 3){
-                    $mask = "0".$num;
+                if($recid == 1){                //0001
+                    $mask = "000".$numrow;
+                }elseif($recid ==2){            //001
+                    $mask = "00".$numrow;
+                }elseif($recid == 3){           //01
+                    $mask = "0".$numrow;
                 }
 
                 $fedID = $cnumber."-".$tnumber."-".$mask;
@@ -383,13 +359,13 @@ if(isset($_POST['save'])){
                 
                 $sql_insert ="INSERT INTO subproject(
                     recid, listname, fedID, moneyID, descript, amount, price, howto, reciveDate, lawID, age, reciveOffice, status, pid, tid, cid, gid
-                ) VALUES($num, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
+                ) VALUES($numrow, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
                     '$reciveOffice', '$status', $pid, $tid, $cid, $gid
                 ) ";
                     $result = dbQuery($sql_insert);
 
         }  //end for
-    }else{
+    }else{  //กรณีที่ไม่มีการคลิกทำซ้ำ  ให้ทำรายการเดียว
         
          //search recid
         $sql_recid = "SELECT recid FROM subproject WHERE pid = $pid";
@@ -400,10 +376,6 @@ if(isset($_POST['save'])){
         }else{
             $numrow++;
         }
-
-        $recid= $numrow;
-
-
         //สร้างหมายเลขครุภัณฑ์
 
         //ดึงหมายเลขกลุ่มครุภัณฑ์
@@ -425,28 +397,16 @@ if(isset($_POST['save'])){
         $row_tid = dbFetchArray($result_tid);
         $tnumber = $row_tid['tnumber'];
 
-        //ตรวจสอบว่ามีครุภัณฑ์อื่นอยู่หรือไม่ 
-        $sql_pid  = "SELECT  recid  FROM subproject WHERE pid = $pid AND tid = $tnumber";
-        $result_pid = dbQuery($sql_pid);
-        $num = dbNumRows($result_pid);
-        
-        if($num == 0){
-            $num = 1;
-        }else{
-            $num++;
-        }
-
-
 
         //จัดการ format
-        $recid  = strlen($num);
+        $recid  = strlen($numrow);
 
         if($recid == 1){
-            $mask = "000".$num;
+            $mask = "000".$numrow;
         }elseif($recid ==2){
-            $mask = "00".$num;
+            $mask = "00".$numrow;
         }elseif($recid == 3){
-            $mask = "0".$num;
+            $mask = "0".$numrow;
         }
 
         $fedID = $cnumber."-".$tnumber."-".$mask;
@@ -455,7 +415,7 @@ if(isset($_POST['save'])){
         
         $sql_insert ="INSERT INTO subproject(
             recid, listname, fedID, moneyID, descript, amount, price, howto, reciveDate, lawID, age, reciveOffice, status, pid, tid, cid, gid
-        ) VALUES($num, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
+        ) VALUES($numrow, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
             '$reciveOffice', '$status', $pid, $tid, $cid, $gid
         ) ";
     // print $sql_insert;
