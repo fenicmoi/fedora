@@ -12,10 +12,10 @@ $dbConn->select_db($dbName);
 */
 
 $db_config=array(
-        "host"=>"localhost",  // กำหนด host
-        "user"=>"root", // กำหนดชื่อ user
-        "pass"=>"hellojava",   // กำหนดรหัสผ่าน
-        "dbname"=>"stock",  // กำหนดชื่อฐานข้อมูล
+        "host"=>"",  // กำหนด host
+        "user"=>"", // กำหนดชื่อ user
+        "pass"=>"",   // กำหนดรหัสผ่าน
+        "dbname"=>"",  // กำหนดชื่อฐานข้อมูล
         "charset"=>"utf8"  // กำหนด charset
     );
 
@@ -28,6 +28,7 @@ $db_config=array(
         "charset"=>"utf8"  // กำหนด charset
     );
 */
+
 
 $dbConn = @new mysqli($db_config["host"], $db_config["user"], $db_config["pass"], $db_config["dbname"]);
 if(mysqli_connect_error()) {

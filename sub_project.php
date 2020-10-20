@@ -22,7 +22,7 @@ $row = dbFetchAssoc($result);
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -57,10 +57,13 @@ $row = dbFetchAssoc($result);
 <div class="row  mt-2">
         <div class="col-md-12">
             <div class="card">
-                <div class ="card-header">
+                <div class ="card-header bg-secondary text-white">
                     <span class="font-weight-bold"><i class="fas fa-th"></i>  รายการทรัพย์สินโครงการ</span>
+                    <a href="project.php" class="btn btn-primary  float-right">
+                        <i class="fas fa-home"></i> กลับหน้าโครงการ
+                    </a>
                     <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId">
-                    <i class="fas fa-plus"></i> เพิ่มรายการ
+                        <i class="fas fa-plus"></i> เพิ่มรายการ
                     </button>
                 </div>
                 
@@ -87,9 +90,16 @@ $row = dbFetchAssoc($result);
                                 <?php   
                                     $sql = "SELECT * FROM subproject WHERE pid=$pid ORDER BY sid ASC";
                                     $result = dbQuery($sql);
+<<<<<<< HEAD
                                     while ($row = dbFetchArray($result)) {
                                       echo "<tr>
                                                 <td>".$row['recid']."</td>
+=======
+                                    $count = 1;
+                                    while ($row = dbFetchArray($result)) {
+                                      echo "<tr>
+                                                <td>".$count."</td>
+>>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
                                                 <td>".$row['fedID']."</td>
                                                 <td>".$row['listname']."</td>
                                                 <td>".$row['moneyID']."</td>
@@ -103,6 +113,10 @@ $row = dbFetchAssoc($result);
                                                 <td>".$row['reciveOffice']."</td>
                                                 <td>".$row['status']."</td>
                                             </tr>";
+<<<<<<< HEAD
+=======
+                                        $count++;
+>>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
                                     }
                                 ?>
                            </tbody>
@@ -130,7 +144,7 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">ชื่อรายการ</span>
                         </div>
-                        <input type="text" id="listname" name="listname"  class="form-control">
+                        <input type="text" id="listname" name="listname"  class="form-control" required>
                     </div>
 
                     <div class="input-group mb-1">
@@ -147,7 +161,7 @@ $row = dbFetchAssoc($result);
                             <span class="input-group-text" id="basic-addon1">ประเภทครุภัณฑ์</span>
                         </div>
                         <select class="select2-single"  name="cnumber" id="cnumber" required>
-                            <option id="clist">--เลือก--</option>
+                            <option id="clist" selected>--เลือก--</option>
                         </select> 
                     </div>
 
@@ -156,7 +170,7 @@ $row = dbFetchAssoc($result);
                             <span class="input-group-text" id="basic-addon1">ชนิดครุภัณฑ์</span>
                         </div>
                         <select class="select2-single"  name="tnumber" id="tnumber" required>
-                            <option id="tlist">--เลือก--</option>
+                            <option id="tlist" selected>--เลือก--</option>
                         </select> 
                     </div>
 
@@ -164,27 +178,27 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">รหัสสินทรัพย์</span>
                         </div>
-                        <input type="text" id="moneyID" name="moneyID"  class="form-control">
+                        <input type="text" id="moneyID" name="moneyID"  class="form-control" value="-">
                     </div>
 
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">รายละเอียด</span>
                         </div>
-                        <textarea name="descript" id="descript" cols="50" rows="2"></textarea>
+                        <input class="form-control" type="tel" name="descript" id="descript" required>
                     </div>
 
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">จำนวน</span>
                         </div>
-                        <input type="text" id="amount" name="amount"  class="form-control col-4">
+                        <input type="text" id="amount" name="amount"  class="form-control col-4" required>
                         
                         <div class="input-group-prepend">
                         <label>&nbsp;</label>
                             <span class="input-group-text" id="basic-addon1">ราคา/หน่วย</span>
                         </div>
-                        <input type="text" id="price" name="price"  class="form-control col-4">
+                        <input type="text" id="price" name="price"  class="form-control col-4" required>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">บาท</span>
                         </div>
@@ -194,7 +208,7 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">วิธีการได้มา</span>
                         </div>
-                        <select name="howto" id="howto" class="form-control col-3">
+                        <select name="howto" id="howto" class="form-control col-3" required>
                             <option value="0">-- เลือก --</option>
                             <option value="ประกาศเชิญชวน">ประกาศเชิญชวน</option>
                             <option value="คัดเลือก">คัดเลือก</option>
@@ -206,38 +220,71 @@ $row = dbFetchAssoc($result);
                         <label>&nbsp;</label>
                             <span class="input-group-text" id="basic-addon1">วันตรวจรับ</span>
                         </div>
+<<<<<<< HEAD
                         <input type="date" id="reciveDate" name="reciveDate"  class="form-control col-3">
+=======
+                        <input type="date" id="reciveDate" name="reciveDate"  class="form-control col-3" required>
+>>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
                     </div>
 
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">เลขที่สัญญา</span>
                         </div>
-                        <input type="text" id="lawID" name="lawID"  class="form-control">
+                        <input type="text" id="lawID" name="lawID"  class="form-control" value="-" required>
 
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">อายุการใช้งาน</span>
                         </div>
+<<<<<<< HEAD
                         <input type="text" id="age" name="age"  class="form-control">
+=======
+                        <input type="text" id="age" name="age"  class="form-control" value="-" required>
+>>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
                     </div>
 
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">หน่วยงานที่ใช้</span>
                         </div>
-                        <input type="text" id="reciveOffice" name="reciveOffice"  class="form-control" col-6>
-
+                        <input type="text" id="reciveOffice" name="reciveOffice"  class="form-control" required>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">สภาพ</span>
                         </div>
-                        <select name="status" id="status" class="form-control col-3">
+                        <select name="status" id="status" class="form-control col-3" required>
                             <option value="0">-- เลือก --</option>
                             <option value="ดี">ดี</option>
+<<<<<<< HEAD
                             <option value="พอใช้งานได้">พอใช้งานได้</option>
+=======
+>>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
                             <option value="ชำรุด">ชำรุด</option>
                         </select>
                     </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="acopy" id="acopy" value="0" checked>
+                         ไม่ทำซ้ำ
+                      </label>
+                    </div>
+
+                    <div class="form-check mb-1">
+                        <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="acopy" id="acopy" value="1">
+                         ทำซ้ำ  <kbd>ใช้กรณีจำนวนหลายชิ้น และแจกจ่ายไปหลายหน่วยงาน</kbd>
+                      </label>
+                    </div>
+
+                    <div id="rep" class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">จำนวนที่ต้องการทำซ้ำ</span>
+                        </div>
+                        <input type="number" id="txtRep" name="txtRep"  class="form-control col-2" >
+                    </div>
+
                     <input type="hidden" name="pid" id="pid" value=<?=$pid?>>
+                    <input type="hidden" name="aCopy" id="aCopy">
             </div>
             <div class="card-footer">
                 <center>
@@ -257,18 +304,11 @@ $row = dbFetchAssoc($result);
 <?php   
 // Insert subproject   
 if(isset($_POST['save'])){
-    
-    //search recid
-    $sql_recid = "SELECT recid FROM subproject WHERE pid = $pid";
-    $result_recid = dbQuery($sql_recid);
-    $numrow = dbNumRows($result_recid);
-    if($numrow == 0 ){
-        $numrow = 1;
-    }else{
-        $numrow++;
-    }
+    $pid= $_POST['pid'];         // รหัสโครงการ
+    $acopy = $_POST['acopy'];    // ทำซ้ำหรือไม่
+    $numRep = $_POST['txtRep'];  //จำนวนที่ต้องการทำซ้ำ
 
-    $recid= $numrow;
+
     $listname = $_POST['listname'];
     $moneyID = $_POST['moneyID'];
     $descript = $_POST['descript'];
@@ -280,11 +320,16 @@ if(isset($_POST['save'])){
     $age = $_POST['age'];
     $reciveOffice = $_POST['reciveOffice'];
     $status = $_POST['status'];
+<<<<<<< HEAD
     $pid= $_POST['pid'];
+=======
+  
+>>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
     $tid = $_POST['tnumber'];
     $cid = $_POST['cnumber'];
     $gid = $_POST['gnumber'];
 
+<<<<<<< HEAD
     //สร้างหมายเลขครุภัณฑ์
     // $fedID = $gid."-".$cid."-".$tid."-".$recid;
 
@@ -332,6 +377,128 @@ if(isset($_POST['save'])){
     ) ";
     print $sql_insert;
     $result = dbQuery($sql_insert);
+=======
+
+
+    if($acopy == "1"){        //1 =  มีการทำซ้ำ
+
+        for ($i=0; $i < $numRep; $i++) { 
+
+            //ส่วนการดึงลดับพัสดุ โดยใช้วิธีการเลือกทั้งรายการในประเภทไปเลย  ในการทำงาน
+            $sql_recid = "SELECT recid FROM subproject WHERE tid = $tid";        
+            $result_recid = dbQuery($sql_recid);
+            $numrow = dbNumRows($result_recid);
+            
+            if($numrow == 0 ){         
+                $numrow = 1;    //ถ้าไม่มีเลย  ให้  numrow = 1
+            }else{
+                $numrow++;      //ถ้ามี numrow +1
+            }
+
+
+                //ส่วนการสร้างชุดหมายเลขครุภัณฑ์
+                $sql_gid = "SELECT gnumber FROM st_group WHERE gid = $gid";
+                $result_gid = dbQuery($sql_gid);
+                $row_gid = dbFetchArray($result_gid);
+                $gnumber = $row_gid['gnumber'];
+
+
+                //ดึงหมายเลขประเภท
+                $sql_cid = "SELECT cnumber FROM st_class WHERE cid = $cid";
+                $result_cid = dbQuery($sql_cid);
+                $row_cid =dbFetchArray($result_cid);
+                $cnumber = $row_cid['cnumber'];
+
+                //ดึงหมายเลขชนิด  
+                $sql_tid = "SELECT tnumber FROM st_typetype WHERE tid = $tid";
+                $result_tid = dbQuery($sql_tid);
+                $row_tid = dbFetchArray($result_tid);
+                $tnumber = $row_tid['tnumber'];
+
+
+                //จัดการ format
+                $recid  = strlen($numrow);    //นับจำนวนหลักของจำนวนแถว
+
+                if($recid == 1){                //0001
+                    $mask = "000".$numrow;
+                }elseif($recid ==2){            //001
+                    $mask = "00".$numrow;
+                }elseif($recid == 3){           //01
+                    $mask = "0".$numrow;
+                }
+
+                $fedID = $cnumber."-".$tnumber."-".$mask;
+
+
+                
+                $sql_insert ="INSERT INTO subproject(
+                    recid, listname, fedID, moneyID, descript, amount, price, howto, reciveDate, lawID, age, reciveOffice, status, pid, tid, cid, gid
+                ) VALUES($numrow, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
+                    '$reciveOffice', '$status', $pid, $tid, $cid, $gid
+                ) ";
+                    $result = dbQuery($sql_insert);
+
+        }  //end for
+    }else{  //กรณีที่ไม่มีการคลิกทำซ้ำ  ให้ทำรายการเดียว
+        
+         //search recid
+        $sql_recid = "SELECT recid FROM subproject WHERE pid = $pid";
+        $result_recid = dbQuery($sql_recid);
+        $numrow = dbNumRows($result_recid);
+        if($numrow == 0 ){
+            $numrow = 1;
+        }else{
+            $numrow++;
+        }
+        //สร้างหมายเลขครุภัณฑ์
+
+        //ดึงหมายเลขกลุ่มครุภัณฑ์
+        $sql_gid = "SELECT gnumber FROM st_group WHERE gid = $gid";
+        $result_gid = dbQuery($sql_gid);
+        $row_gid = dbFetchArray($result_gid);
+        $gnumber = $row_gid['gnumber'];
+
+
+        //ดึงหมายเลขประเภท
+        $sql_cid = "SELECT cnumber FROM st_class WHERE cid = $cid";
+        $result_cid = dbQuery($sql_cid);
+        $row_cid =dbFetchArray($result_cid);
+        $cnumber = $row_cid['cnumber'];
+
+        //ดึงหมายเลขชนิด  
+        $sql_tid = "SELECT tnumber FROM st_typetype WHERE tid = $tid";
+        $result_tid = dbQuery($sql_tid);
+        $row_tid = dbFetchArray($result_tid);
+        $tnumber = $row_tid['tnumber'];
+
+
+        //จัดการ format
+        $recid  = strlen($numrow);
+
+        if($recid == 1){
+            $mask = "000".$numrow;
+        }elseif($recid ==2){
+            $mask = "00".$numrow;
+        }elseif($recid == 3){
+            $mask = "0".$numrow;
+        }
+
+        $fedID = $cnumber."-".$tnumber."-".$mask;
+
+
+        
+        $sql_insert ="INSERT INTO subproject(
+            recid, listname, fedID, moneyID, descript, amount, price, howto, reciveDate, lawID, age, reciveOffice, status, pid, tid, cid, gid
+        ) VALUES($numrow, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
+            '$reciveOffice', '$status', $pid, $tid, $cid, $gid
+        ) ";
+    // print $sql_insert;
+       $result = dbQuery($sql_insert);
+    }  //check copy
+    
+   
+
+>>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
     if($result){
         echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
     }
@@ -356,7 +523,7 @@ if(isset($_POST['save'])){
 						
 						//วนลูปแสดงข้อมูล ที่ได้จาก ตัวแปร data
 						$.each(data, function( index, value ) {
-							//แทรก Elements ใน id province  ด้วยคำสั่ง append
+                            //แทรก Elements ใน id province  ด้วยคำสั่ง append
                               $("#gnumber").append("<option value='"+ value.gid +"'> " +value.gnumber + value.gname + "</option>");
 						});
 					}
