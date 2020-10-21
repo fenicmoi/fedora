@@ -1,18 +1,12 @@
 <?php 
 session_start();
-        // if(isset($_POST['Username'])){
+
                   include("header.php");
-                  // $Username = mysqli_real_escape_string($_POST['Username']);
-                  // $Password = mysqli_real_escape_string($_POST['Password']);
-                 // $uname = $_POST['Username'];
-                    //$password = $_POST['Password'];
 
                    $Username = $_POST['username'];
                    $Password = $_POST['password'];
 
                   $sql="SELECT * FROM user Where Username='".$Username."' and Password='".$Password."' ";
-
-                  //print $sql;
 
                   $result = dbQuery($sql);
 				
