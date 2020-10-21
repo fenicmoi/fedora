@@ -1,15 +1,6 @@
 <?php
 	include("library/database.php");
 	
-
-	////แสดงกลุ่มครุภัณฑ์ (group)
-
-
-
-
-
-
-	
 	if(isset($_GET['show_province'])){
 		
 		$sql = "SELECT gid, gnumber, gname FROM st_group";

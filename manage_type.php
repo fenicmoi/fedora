@@ -269,6 +269,7 @@ function load_edit(tid){
 						//วนลูปแสดงข้อมูล ที่ได้จาก ตัวแปร data
 						$.each(data, function( index, value ) {
 							//แทรก Elements ใน id province  ด้วยคำสั่ง append
+                            console.log(value.gnumber);
 							  $("#gnumber").append("<option value='"+ value.gid +"'> " +value.gnumber + value.gname + "</option>");
 						});
 					}

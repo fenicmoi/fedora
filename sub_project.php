@@ -90,16 +90,10 @@ $row = dbFetchAssoc($result);
                                 <?php   
                                     $sql = "SELECT * FROM subproject WHERE pid=$pid ORDER BY sid ASC";
                                     $result = dbQuery($sql);
-<<<<<<< HEAD
-                                    while ($row = dbFetchArray($result)) {
-                                      echo "<tr>
-                                                <td>".$row['recid']."</td>
-=======
                                     $count = 1;
                                     while ($row = dbFetchArray($result)) {
                                       echo "<tr>
                                                 <td>".$count."</td>
->>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
                                                 <td>".$row['fedID']."</td>
                                                 <td>".$row['listname']."</td>
                                                 <td>".$row['moneyID']."</td>
@@ -113,10 +107,7 @@ $row = dbFetchAssoc($result);
                                                 <td>".$row['reciveOffice']."</td>
                                                 <td>".$row['status']."</td>
                                             </tr>";
-<<<<<<< HEAD
-=======
                                         $count++;
->>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
                                     }
                                 ?>
                            </tbody>
@@ -220,11 +211,7 @@ $row = dbFetchAssoc($result);
                         <label>&nbsp;</label>
                             <span class="input-group-text" id="basic-addon1">วันตรวจรับ</span>
                         </div>
-<<<<<<< HEAD
-                        <input type="date" id="reciveDate" name="reciveDate"  class="form-control col-3">
-=======
                         <input type="date" id="reciveDate" name="reciveDate"  class="form-control col-3" required>
->>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
                     </div>
 
                     <div class="input-group mb-1">
@@ -236,11 +223,7 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">อายุการใช้งาน</span>
                         </div>
-<<<<<<< HEAD
-                        <input type="text" id="age" name="age"  class="form-control">
-=======
                         <input type="text" id="age" name="age"  class="form-control" value="-" required>
->>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
                     </div>
 
                     <div class="input-group mb-1">
@@ -254,10 +237,6 @@ $row = dbFetchAssoc($result);
                         <select name="status" id="status" class="form-control col-3" required>
                             <option value="0">-- เลือก --</option>
                             <option value="ดี">ดี</option>
-<<<<<<< HEAD
-                            <option value="พอใช้งานได้">พอใช้งานได้</option>
-=======
->>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
                             <option value="ชำรุด">ชำรุด</option>
                         </select>
                     </div>
@@ -320,64 +299,11 @@ if(isset($_POST['save'])){
     $age = $_POST['age'];
     $reciveOffice = $_POST['reciveOffice'];
     $status = $_POST['status'];
-<<<<<<< HEAD
-    $pid= $_POST['pid'];
-=======
   
->>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
     $tid = $_POST['tnumber'];
     $cid = $_POST['cnumber'];
     $gid = $_POST['gnumber'];
 
-<<<<<<< HEAD
-    //สร้างหมายเลขครุภัณฑ์
-    // $fedID = $gid."-".$cid."-".$tid."-".$recid;
-
-    //ดึงหมายเลขกลุ่มครุภัณฑ์
-    $sql_gid = "SELECT gnumber FROM st_group WHERE gid = $gid";
-    $result_gid = dbQuery($sql_gid);
-    $row_gid = dbFetchArray($result_id);
-    $gnumber = $row_gid['gnumber'];
-
-
-    //ดึงหมายเลขประเภท
-    $sql_cid = "SELECT cnumber FROM st_class WHERE cid = $cid";
-    $result_cid = dbQuery($sql_cid);
-    $row_cid =dbFetchArray($result_cid);
-    $cnumber = $row_cid['cnumber'];
-
-    //ดึงหมายเลขชนิด  
-    $sql_tid = "SELECT tnumber FROM st_typetype WHERE tid = $tid";
-    $result_tid = dbQuery($sql_tid);
-    $row_tid = dbFetchArray($result_tid);
-    $tnumber = $row_tid['tnumber'];
-
-   
-    //จัดการ format
-    $count  = strlen($tnumber);
-
-    if($count == 1){
-        $mask = "000".$tnumber;
-    }elseif($count ==2){
-        $mask = "00".$tnumber;
-    }elseif($count == 3){
-        $mask = "0".$tnumber;
-    }
-
-    $fedID = $cnumber."-".$tnumber."-".$mask;
-
-
-
-
-    
-    $sql_insert ="INSERT INTO subproject(
-        recid, listname, fedID, moneyID, descript, amount, price, howto, reciveDate, lawID, age, reciveOffice, status, pid, tid, cid, gid
-    ) VALUES($recid, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
-        '$reciveOffice', '$status', $pid, $tid, $cid, $gid
-    ) ";
-    print $sql_insert;
-    $result = dbQuery($sql_insert);
-=======
 
 
     if($acopy == "1"){        //1 =  มีการทำซ้ำ
@@ -498,7 +424,6 @@ if(isset($_POST['save'])){
     
    
 
->>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
     if($result){
         echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
     }
