@@ -10,7 +10,7 @@
             </li>
             <li class="btn-group">
                 <a class="btn btn-success" href="project.php"><i class="fas fa-clipboard-list"></i> โครงการ</a>
-                <a class="btn btn-success" href="project.php"><i class="fas fa-clipboard-list"></i> ครุภัณฑ์</a>
+                <a class="btn btn-success" href="list.php"><i class="fas fa-clipboard-list"></i> ครุภัณฑ์</a>
                 <a class="btn btn-dark" href=""><i class="fas fa-cog"></i></a>
                 <a class="btn btn-success" href="manage_group.php"><i class="fab fa-delicious"></i> กลุ่มครุภัณฑ์</a>
                 <a class="btn btn-success" href="manage_class.php"><i class="fab fa-dropbox"></i> ชนิดครุภัณฑ์</a>
