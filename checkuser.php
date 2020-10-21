@@ -8,6 +8,15 @@ session_start();
 
                   $sql="SELECT * FROM user Where Username='".$Username."' and Password='".$Password."' ";
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                  print $sql;
+=======
+                  //print $sql;
+>>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
+
+>>>>>>> 039d4c5ef9484c7722be2db93229766a13557304
                   $result = dbQuery($sql);
 				
                   if(dbNumRows($result) == 1){
