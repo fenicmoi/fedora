@@ -76,8 +76,8 @@ $(document).ready(function(){
             <div class="card-body">
                 <table class="table table-bordered table-hover table-striped" id="myTable">
                         <thead class="bg-secondary text-white">
-                            <th>ID</th>
                             <th>รหัสชนิด</th>
+                            <th>รหัสประเภท</th>
                             <th>ชื่อชนิด</th>
                             <th>ประเภท</th>
                             <th>กลุ่ม</th>
@@ -86,12 +86,12 @@ $(document).ready(function(){
                         </thead>
                         <tbody>
                         <?php   
-                            $sql ="SELECT t.*,c.cname, g.gname FROM st_typetype as t INNER JOIN st_group as g ON g.gid = t.gid INNER JOIN st_class as c on c.cid = t.cid ORDER BY t.tnumber DESC";
+                            $sql ="SELECT t.*,c.cnumber,c.cname, g.gname FROM st_typetype as t INNER JOIN st_group as g ON g.gid = t.gid INNER JOIN st_class as c on c.cid = t.cid ORDER BY t.tnumber DESC";
                            
                             $result = dbQuery($sql);
                             while ($row = dbFetchArray($result)) {?>
                                 <tr>
-                                         <td><?php echo $row['tid'];?></td>
+                                         <td><?php echo $row['cnumber'];?></td>
                                          <td><?php echo $row['tnumber'];?></td>
                                          <td><?php echo $row['tname'];?></td>
                                          <td><?php echo $row['cname']; ?></td>
@@ -269,7 +269,6 @@ function load_edit(tid){
 						//วนลูปแสดงข้อมูล ที่ได้จาก ตัวแปร data
 						$.each(data, function( index, value ) {
 							//แทรก Elements ใน id province  ด้วยคำสั่ง append
-                            console.log(value.gnumber);
 							  $("#gnumber").append("<option value='"+ value.gid +"'> " +value.gnumber + value.gname + "</option>");
 						});
 					}
@@ -293,7 +292,7 @@ function load_edit(tid){
 							
 							//วนลูปแสดงข้อมูล ที่ได้จาก ตัวแปร data  
 							$.each(data, function( index, value ) {
-								
+								// console.log(value.cname)
 								//แทรก Elements ข้อมูลที่ได้  ใน id amphur  ด้วยคำสั่ง append
 								  $("#cnumber").append("<option value='"+ value.cid +"'> " + value.cnumber+"."+value.cname + "</option>");
 							});

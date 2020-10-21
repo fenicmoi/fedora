@@ -27,9 +27,9 @@
 
 		$province_id = $_GET['province_id'];
 		$sql = "SELECT cid, cnumber, cname FROM st_class WHERE gid = ".$province_id." ";
-		$result = dbQuery($result);
+		$result = dbQuery($sql);
 
-		if ($result->num_rows > 0) {
+		if (dbNumRows($result)> 0) {
 			while($row = dbFetchAssoc($result)) {
 				$json_result[] = array(
                     'cid'=>$row['cid'],
@@ -47,9 +47,9 @@
 		
 		$amphur_id = $_GET['amphur_id'];
 		$sql = "SELECT tid, tnumber, tname FROM st_typetype WHERE cid = '".$amphur_id."' ";
-		$result = dbQuery($result);
+		$result = dbQuery($sql);
 		
-		if ($result->num_rows > 0) {
+		if (dbNumRows($result) > 0) {
 			while($row = dbFetchAssoc($result)) {
 				$json_result[] = array(
 					'tid'=>$row['tid'],

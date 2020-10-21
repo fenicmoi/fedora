@@ -441,7 +441,7 @@ if(isset($_POST['save'])){
 				
 				//ดึงข้อมูล province จากไฟล์ get_data.php
 				$.ajax({
-					url:"get_data.php",
+					url:"get_data_php53.php",
 					dataType: "json", //กำหนดให้มีรูปแบบเป็น Json
 					data:{show_province:'show_province'}, //ส่งค่าตัวแปร show_province เพื่อดึงข้อมูล จังหวัด
 					success:function(data){
@@ -462,7 +462,7 @@ if(isset($_POST['save'])){
 					var province_id = $(this).val();
 					
 					$.ajax({
-						url:"get_data.php",
+						url:"get_data_php53.php",
 						dataType: "json",//กำหนดให้มีรูปแบบเป็น Json
 						data:{province_id:province_id},//ส่งค่าตัวแปร province_id เพื่อดึงข้อมูล อำเภอ ที่มี province_id เท่ากับค่าที่ส่งไป
 						success:function(data){
@@ -488,7 +488,7 @@ if(isset($_POST['save'])){
                     var amphur_id = $(this).val();
 					
 					$.ajax({
-						url:"get_data.php",
+						url:"get_data_php53.php",
 						dataType: "json",//กำหนดให้มีรูปแบบเป็น Json
 						data:{amphur_id:amphur_id},//ส่งค่าตัวแปร amphur_id เพื่อดึงข้อมูล ตำบล ที่มี amphur_id เท่ากับค่าที่ส่งไป
 						success:function(data){
