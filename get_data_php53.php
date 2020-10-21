@@ -3,13 +3,6 @@
 	
 
 	////แสดงกลุ่มครุภัณฑ์ (group)
-
-
-
-
-
-
-	
 	if(isset($_GET['show_province'])){
 		
 		$sql = "SELECT gid, gnumber, gname FROM st_group";
@@ -42,7 +35,7 @@
                     'cid'=>$row['cid'],
                     'cnumber'=>$row['cnumber'],
 					'cname'=>$row['cname'],
-                )];
+                );
 			}
 			echo json_encode($json_result);
 		} 

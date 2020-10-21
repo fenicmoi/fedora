@@ -7,18 +7,6 @@ session_start();
                    $Password = $_POST['password'];
 
                   $sql="SELECT * FROM user Where Username='".$Username."' and Password='".$Password."' ";
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-                  print $sql;
-=======
->>>>>>> f08664d187db7f3eff8989cc21e6954fba9c0837
-                  //print $sql;
-
->>>>>>> 039d4c5ef9484c7722be2db93229766a13557304
                   $result = dbQuery($sql);
 				
                   if(dbNumRows($result) == 1){
