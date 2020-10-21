@@ -12,11 +12,7 @@ session_start();
 
                   $sql="SELECT * FROM user Where Username='".$Username."' and Password='".$Password."' ";
 
-<<<<<<< HEAD
-                  print $sql;
-=======
                   //print $sql;
->>>>>>> d3ff0231c7c8071e686539bbad9eaf4c3746724c
 
                   $result = dbQuery($sql);
 				

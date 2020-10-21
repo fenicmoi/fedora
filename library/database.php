@@ -12,10 +12,10 @@ $dbConn->select_db($dbName);
 */
 
 $db_config=array(
-        "host"=>"",  // กำหนด host
-        "user"=>"", // กำหนดชื่อ user
-        "pass"=>"",   // กำหนดรหัสผ่าน
-        "dbname"=>"",  // กำหนดชื่อฐานข้อมูล
+        "host"=>"localhost",  // กำหนด host
+        "user"=>"root", // กำหนดชื่อ user
+        "pass"=>"hellojava",   // กำหนดรหัสผ่าน
+        "dbname"=>"stock",  // กำหนดชื่อฐานข้อมูล
         "charset"=>"utf8"  // กำหนด charset
     );
 
