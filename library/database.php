@@ -10,6 +10,16 @@ $dbConn=new mysqli($dbHost, $dbUser, $dbPass);
 $dbConn->query("set names utf8");
 $dbConn->select_db($dbName);
 */
+/*
+$db_config=array(
+    "host"=>"localhost",  // กำหนด host
+    "user"=>"root", // กำหนดชื่อ user
+    "pass"=>"fenicgal",   // กำหนดรหัสผ่าน
+    "dbname"=>"stock",  // กำหนดชื่อฐานข้อมูล
+    "charset"=>"utf8"  // กำหนด charset
+);
+*/
+
 
 $db_config=array(
         "host"=>"localhost",  // กำหนด host
@@ -18,6 +28,9 @@ $db_config=array(
         "dbname"=>"stock",  // กำหนดชื่อฐานข้อมูล
         "charset"=>"utf8"  // กำหนด charset
     );
+
+
+
 
 /*
     $db_config=array(

@@ -17,11 +17,11 @@
 
 		if (dbNumRows($result) > 0) {
 			while($row = dbFetchAssoc($result)) {
-				$json_result[] = [
+				$json_result[] = array(
                     'gid'=>$row['gid'],
                     'gnumber'=>$row['gnumber'],
 					'gname'=>$row['gname'],
-				];
+                );
 			}
 			echo json_encode($json_result);
 		} 
@@ -38,11 +38,11 @@
 
 		if ($result->num_rows > 0) {
 			while($row = dbFetchAssoc($result)) {
-				$json_result[] = [
+				$json_result[] = array(
                     'cid'=>$row['cid'],
                     'cnumber'=>$row['cnumber'],
 					'cname'=>$row['cname'],
-				];
+                )];
 			}
 			echo json_encode($json_result);
 		} 
@@ -58,11 +58,11 @@
 		
 		if ($result->num_rows > 0) {
 			while($row = dbFetchAssoc($result)) {
-				$json_result[] = [
+				$json_result[] = array(
 					'tid'=>$row['tid'],
                     'tnumber'=>$row['tnumber'],
 					'tname'=>$row['tname'],
-				];
+                );
 			}
 			echo json_encode($json_result);
 		} 
