@@ -25,7 +25,7 @@ $class_id = $row['cid'];
 <form method="post" action="manage_type.php">
 		
         <div class="form-group">
-		<label>กลุ่มครุภัณฑ์</label>
+		<label>กลุ่มครุภัณฑ์1</label>
             <select class="select2-single col-4"  name="editGroup" id="editGroup" >
                 <option>--เลือก--</option>
             </select>

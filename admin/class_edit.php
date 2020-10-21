@@ -26,14 +26,15 @@ $cname = $row['cname'];
         <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">ชื่อประเภท</span>
         </div>
-        <input type="text" class="form-control col-md-2" id="cnumber" name="cnumber"  aria-label="classnumber" aria-describedby="basic-addon1" value="<?=$cnumber;?>">
+        <input type="text" class="form-control" id="cname" name="cname"  aria-label="class name" aria-describedby="basic-addon1" value="<?=$cname;?>">
+        
     </div>
 
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">รหัสประเภท</span>
         </div>
-        <input type="text" class="form-control" id="cname" name="cname"  aria-label="class name" aria-describedby="basic-addon1" value="<?=$cname;?>">
+        <input type="text" class="form-control col-md-2" id="cnumber" name="cnumber"  aria-label="classnumber" aria-describedby="basic-addon1" value="<?=$cnumber;?>">
     </div>
 
       <div class="input-group">
