@@ -6,16 +6,12 @@
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-               
+                <a class="nav-link" href="project.php"><i class="fas fa-clipboard-list"></i> โครงการ</a>
             </li>
-            <li class="btn-group">
-                <a class="btn btn-success" href="project.php"><i class="fas fa-clipboard-list"></i> โครงการ</a>
-                <a class="btn btn-success" href="list.php"><i class="fas fa-clipboard-list"></i> ครุภัณฑ์</a>
-                <a class="btn btn-dark" href=""><i class="fas fa-cog"></i></a>
-                <a class="btn btn-success" href="manage_group.php"><i class="fab fa-delicious"></i> กลุ่มครุภัณฑ์</a>
-                <a class="btn btn-success" href="manage_class.php"><i class="fab fa-dropbox"></i> ชนิดครุภัณฑ์</a>
-                <a class="btn btn-success" href="manage_type.php"><i class="fas fa-chess-board"></i> ประเภทครุภัณฑ์</a>
-            </li>
+            <li> <a class="nav-link" href="list.php"><i class="fas fa-clipboard-list"></i> ครุภัณฑ์</a></li>
+            <li><a class="nav-link" href="manage_group.php"><i class="fab fa-delicious"></i> กลุ่มครุภัณฑ์</a></li>
+            <li><a class="nav-link" href="manage_class.php"><i class="fab fa-dropbox"></i> ชนิดครุภัณฑ์</a></li>
+            <li><a class="nav-link" href="manage_type.php"><i class="fas fa-chess-board"></i> ประเภทครุภัณฑ์</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle btn-success" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">รายงาน<i class="fas fa-print"></i></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
