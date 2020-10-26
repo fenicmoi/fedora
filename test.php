@@ -51,16 +51,16 @@ $result = dbQuery($sql);
             while ($row1 = dbFetchArray($result)) {
                 echo "
                      <tr data-id='$row1[gid]' data-parent='0' data-level='1'>
-                         <td data-column='name'>$row1[gid]</td>
+                         <td data-column='name'>$row1[gnumber]</td>
                          <td>$row1[gname]</td>
                      </tr>
                      ";
-                $sql2 = "SELECT cid, cname, gid FROM st_class WHERE gid = $row1[gid]";
+                $sql2 = "SELECT * FROM st_class WHERE gid = $row1[gid]";
                 $result2 = dbQuery($sql2);
                 while ($row2 = dbFetchArray($result2)) {
                     echo "
                     <tr data-id='$row2[cid] data-parent='1' data-level='2'>
-                        <td data-column='name'>-</td>
+                        <td data-column='name'>$row2[cnumber]</td>
                         <td>$row2[cname]</td>
                     </tr>
                     ";
