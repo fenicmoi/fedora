@@ -76,6 +76,7 @@ $(document).ready(function(){
                         <thead>
                             <th>หมายเลขกลุ่ม</th>
                             <th>ชื่อกลุ่ม (GROUP)</th>
+                            <th>จำนวนชนิด (Class)</th>
                             <th><i class="fas fa-cog"></i></th>
                         </thead>
                         <tbody>
@@ -83,9 +84,14 @@ $(document).ready(function(){
                             $sql ="SELECT * FROM st_group ORDER BY gid DESC";
                             $result = dbQuery($sql);
                             while ($row = dbFetchArray($result)) {
+                                $gid = $row['gid'];
+                                $sqlcount = "SELECT gid FROM st_class WHERE gid = $gid";
+                                $resultCount = dbQuery($sqlcount);
+                                $numrow = dbNumRows($resultCount);
                                 echo "<tr>
                                          <td>".$row['gnumber']."</td>
                                          <td>".$row['gname']."</td>
+                                         <td>".$numrow ."</td>
                                          <td><button class='btn btn-outline-dark btn-sm'><i class='fas fa-pencil-alt'></i></button></td>
                                      </tr>";
                             }
