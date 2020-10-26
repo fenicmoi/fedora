@@ -85,7 +85,7 @@ $(document).ready(function(){
                             $result = dbQuery($sql);
                             while ($row = dbFetchArray($result)) {
                                 $gid = $row['gid'];
-                                $sqlcount = "SELECT gid FROM st_class WHERE gid = $gid";
+                                $sqlcount = "SELECT gid FROM st_class WHERE gid = $gid";                  //นับจำนวน  class 
                                 $resultCount = dbQuery($sqlcount);
                                 $numrow = dbNumRows($resultCount);
                                 echo "<tr>
