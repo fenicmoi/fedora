@@ -30,7 +30,7 @@ include("navbar.php");
             <div class="card-body">
                 <table class="table table-bordered table-hover table-striped" id="myTable">
                         <thead class="bg-secondary text-white">
-                            <th>ID</th>
+                            <th>ID ระบบ</th>
                             <th>ชื่อโครงการ/กิจกรรม</th>
                             <th>งบประมาณ</th>
                             <th>ปีงบประมาณ</th>
@@ -54,7 +54,7 @@ include("navbar.php");
                                                 if($row['money']==0){
                                                     echo "ไม่ระบุ";
                                                 }else{
-                                                  echo $row['money'];   
+                                                  echo  number_format($row['money']);   
                                                 }
                                                 
                                             ?>
@@ -218,7 +218,10 @@ include("navbar.php");
 
         $result =  dbQuery($sql);
         if($result){
+            echo "<script>alert('บันทึกโครงการเรียบร้อยแล้ว')</script>";
             echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='project.php'>";
+        }else{
+            echo "<script>alert('มีบางอย่างผิดพลาด  กรุณาติดต่อ Admin')</script>";
         }
     }
 

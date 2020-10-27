@@ -12,8 +12,6 @@ include("library/database.php");
 include("library/function.php");
 $pid = $_POST['pid'];
 
-echo $pid;
-
 $sql = "SELECT * FROM project WHERE pid = $pid";
 $result = dbQuery($sql);
 $row = dbFetchAssoc($result);
