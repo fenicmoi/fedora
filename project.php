@@ -41,9 +41,8 @@ include("navbar.php");
                         </thead>
                         <tbody>
                         <?php   
-                            $sql ="SELECT  p.*, y.yname, u.office FROM project  p
+                            $sql ="SELECT  p.*, y.yname FROM project  p
                                    INNER JOIN  sys_year  y   ON (p.yid = y.yid)
-                                   INNER JOIN  user u ON (p.uid = u.id)
                                    ORDER BY  pid DESC";
                             $result = dbQuery($sql);
                             while ($row = dbFetchArray($result)) {?>
@@ -61,7 +60,7 @@ include("navbar.php");
                                             ?>
                                         </td>
                                          <td><?php echo $row['yname'];?></td>
-                                         <td><?php echo $row['office'];?></td>
+                                         <td><?php echo $row['uid'];?></td>
                                          <td><a href="sub_project.php?pid=<?=$row['pid']?>" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> รายการครุภัณฑ์</a></td>
                                          <td>
                                             <a class="btn btn-outline-warning btn-sm" 
@@ -214,10 +213,10 @@ include("navbar.php");
         $uid = $_POST['sel_office'];
         
 
-        
+        echo 
 
 
-        $sql = "INSERT INTO project(recid, name, money, yid, uid) VALUES($num, '$name', $money, $yid, $uid)";
+        $sql = "INSERT INTO project(recid, name, money, yid, uid) VALUES($num, '$name', $money, $yid, '$uid')";
 
         $result =  dbQuery($sql);
         if($result){
@@ -246,11 +245,11 @@ include("navbar.php");
 
 <script>
 
-function load_edit(tid){
+function load_edit(pid){
 	 var sdata = {
-         tid : tid,
+         pid : pid,
      };
-	$("#divDataview").load("type_edit.php",sdata);
+	$("#divDataview").load("edit-project.php",sdata);
 }
 
 </script>

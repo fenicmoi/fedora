@@ -9,15 +9,11 @@
 <?php  
 
 include("library/database.php");
-$tid = $_POST['tid'];
-$sql = "SELECT * FROM st_typetype WHERE tid = $tid";
+$pid = $_POST['pid'];
+
+$sql = "SELECT * FROM project WHERE $pid = $pid";
 $result = dbQuery($sql);
 $row = dbFetchAssoc($result);
-$tid = $row['tid'];
-$tnumber = $row['tnumber'];
-$tname = $row['tname'];
-$group_id = $row['gid'];
-$class_id = $row['cid'];
 ?>
 
 
@@ -27,7 +23,7 @@ $class_id = $row['cid'];
 <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog" role="document" style="min-width: 800px">
             <div class="modal-content">
-            <div class="modal-header bg-primary text-white"> <i class="fas fa-plus"></i> เพิ่มโครงการ
+            <div class="modal-header bg-primary text-white"> <i class="fas fa-edit"></i> แก้ไขโครงการ
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
