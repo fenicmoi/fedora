@@ -48,7 +48,7 @@ include("navbar.php");
                             while ($row = dbFetchArray($result)) {?>
                                 <tr>
                                          <td><?php echo $row['pid'];?></td>
-                                         <td><?php echo $row['name'];?></td>
+                                         <td><a href="sub_project.php?pid=<?=$row['pid']?>" class="text-secondary"><?php echo $row['name'];?></a></td>
                                          <td>
                                             <?php 
                                                 if($row['money']==0){
@@ -61,16 +61,16 @@ include("navbar.php");
                                         </td>
                                          <td><?php echo $row['yname'];?></td>
                                          <td><?php echo $row['uid'];?></td>
-                                         <td><a href="sub_project.php?pid=<?=$row['pid']?>" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> รายการครุภัณฑ์</a></td>
+                                         <td><a href="sub_project.php?pid=<?=$row['pid']?>" class="btn btn-outline-primary btn-block btn-sm"><i class="fas fa-eye"></i> </a></td>
                                          <td>
-                                            <a class="btn btn-outline-warning btn-sm" 
+                                            <a class="btn btn-outline-warning btn-sm btn-block" 
                                                 onclick = "load_edit('<?=$row['pid']?>')" 
                                                 data-toggle="modal" 
                                                 data-target="#modelEdit">
                                                 <i class="fas fa-pencil-alt"></i> 
                                             </a> 
                                          </td>
-                                         <td><a class="btn btn-outline-danger btn-sm" ><i class="fas fa-trash-alt"></i></a></td>
+                                         <td><a href="?pid=<?=$row['pid'];?>" class="btn btn-outline-danger btn-sm btn-block" ><i class="fas fa-trash-alt"></i></a></td>
                                      </tr>
                            <?php } ?>
                         </tbody>

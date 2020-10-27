@@ -100,7 +100,7 @@ $row = dbFetchAssoc($result);
                                                 <td>".$row['amount']."</td>
                                                 <td>".$row['price']."</td>
                                                 <td>".$row['howto']."</td>
-                                                <td>".$row['reciveDate']."</td>
+                                                <td>".thaiDate($row['reciveDate'])."</td>
                                                 <td>".$row['lawID']."</td>
                                                 <td>".$row['age']."</td>
                                                 <td>".$row['reciveOffice']."</td>
