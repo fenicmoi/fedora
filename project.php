@@ -239,6 +239,7 @@ include("navbar.php");
             echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='project.php'>";
         }else{
             echo "<script>alert('มีบางอย่างผิดพลาด')</script>";
+            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='project.php'>";
         }
     }
 ?>

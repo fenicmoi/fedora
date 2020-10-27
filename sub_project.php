@@ -10,9 +10,8 @@ include("header.php");
 include("navbar.php");
 
 $pid = $_GET['pid'];
-$sql = "SELECT * FROM project  as p
+$sql = "SELECT p.*, y.yname FROM project  as p
         INNER JOIN sys_year as y  ON  p.yid = y.yid  
-        INNER JOIN user as u  ON p.uid = p.uid 
         WHERE p.pid = $pid";
 $result = dbQuery($sql);
 $row = dbFetchAssoc($result);
@@ -32,7 +31,7 @@ $row = dbFetchAssoc($result);
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">เจ้าของโครงการ</span>
                             </div>
-                            <input type="text"  class="form-control" value="<?=$row['office'];?>" disabled>
+                            <input type="text"  class="form-control" value="<?=$row['uid'];?>" disabled>
                     </div>
 
                     <div class="input-group mb-3">
@@ -43,7 +42,7 @@ $row = dbFetchAssoc($result);
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">งบประมาณ</span>
                             </div>
-                            <input type="text"  class="form-control col-1" value="<?=$row['yname'];?>" disabled>
+                            <input type="text"  class="form-control col-1" value="<?=number_format($row['money']);?>" disabled>
                     </div>
                 </div>
             </div>
@@ -176,7 +175,7 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">รายละเอียด</span>
                         </div>
-                        <input class="form-control" type="tel" name="descript" id="descript" required>
+                        <input class="form-control" type="tel" name="descript" id="descript" value='-' required>
                     </div>
 
                     <div class="input-group mb-1">
@@ -230,7 +229,7 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">หน่วยงานที่ใช้</span>
                         </div>
-                        <input type="text" id="reciveOffice" name="reciveOffice"  class="form-control" required>
+                        <input type="text" id="reciveOffice" name="reciveOffice"  class="form-control" value='-' required>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">สภาพ</span>
                         </div>
@@ -311,14 +310,14 @@ if(isset($_POST['save'])){
         for ($i=0; $i < $numRep; $i++) { 
 
             //ส่วนการดึงลดับพัสดุ โดยใช้วิธีการเลือกทั้งรายการในประเภทไปเลย  ในการทำงาน
-            $sql_recid = "SELECT recid FROM subproject WHERE tid = $tid";        
+            $sql_recid = "SELECT recid FROM subproject WHERE  tid = $tid AND cid = $cid AND gid = $gid"; 
             $result_recid = dbQuery($sql_recid);
             $numrow = dbNumRows($result_recid);
             
             if($numrow == 0 ){         
                 $numrow = 1;    //ถ้าไม่มีเลย  ให้  numrow = 1
             }else{
-                $numrow++;      //ถ้ามี numrow +1
+                $numrow = $numrow + 1;      //ถ้ามี numrow +1
             }
 
 
@@ -351,6 +350,8 @@ if(isset($_POST['save'])){
                     $mask = "00".$numrow;
                 }elseif($recid == 3){           //01
                     $mask = "0".$numrow;
+                }elseif($recid == 4 ){
+                    $mask = $numrow;
                 }
 
                 $fedID = $cnumber."-".$tnumber."-".$mask;
@@ -365,18 +366,34 @@ if(isset($_POST['save'])){
                     $result = dbQuery($sql_insert);
 
         }  //end for
-    }else{  //กรณีที่ไม่มีการคลิกทำซ้ำ  ให้ทำรายการเดียว
+
+        if($result){
+            echo "<script> alert('บันทึกรายการเรียบร้อยแล้ว')</script>";
+            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
+            
+        }else{
+            echo "<script> alert('มีบางอย่างผิดพลาด') </script>";
+            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
+        }
+    }else{  //กรณีทำรายการเดียว
+
         
-         //search recid
-        $sql_recid = "SELECT recid FROM subproject WHERE pid = $pid";
+         //ตรวจสอบว่ามีรายการครุภัณฑ์ที่อยู่ใน group class type 
+        $sql_recid = "SELECT recid FROM subproject WHERE  tid = $tid AND cid = $cid AND gid = $gid";
+ 
         $result_recid = dbQuery($sql_recid);
         $numrow = dbNumRows($result_recid);
         if($numrow == 0 ){
             $numrow = 1;
         }else{
-            $numrow++;
+            $numrow = $numrow+1;
         }
+
         //สร้างหมายเลขครุภัณฑ์
+        //ตรวจสอบ
+
+
+        
 
         //ดึงหมายเลขกลุ่มครุภัณฑ์
         $sql_gid = "SELECT gnumber FROM st_group WHERE gid = $gid";
@@ -418,16 +435,17 @@ if(isset($_POST['save'])){
         ) VALUES($numrow, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
             '$reciveOffice', '$status', $pid, $tid, $cid, $gid
         ) ";
-    // print $sql_insert;
        $result = dbQuery($sql_insert);
-    }  //check copy
-    
-   
-
-    if($result){
-        echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
-    }
-}
+       if($result){
+            echo "<script>alert('บันทึกรายการเรียบร้อยแล้ว')</script>";
+            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
+        }else{
+            echo "<script>alert('มีบางอย่างผิดพลาด')</script>";
+            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
+         }
+         
+    }  // einf if
+}  //end if 
 ?>
 
 
