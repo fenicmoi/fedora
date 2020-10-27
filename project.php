@@ -180,10 +180,10 @@ include("navbar.php");
 
         <!-- Modal Display Edit -->
         <div class="modal fade" id="modelEdit" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-warning">
-                        <h5 class="modal-title"><i class="fas fa-pen"></i> แก้ไข </h5>
+                        <h5 class="modal-title"><i class="fas fa-pen"></i> แก้ไขโครงการ </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -201,6 +201,7 @@ include("navbar.php");
 
 <?php  
 
+
     if(isset($_POST['save'])){
         $yid = $_POST['sel_year'];
         
@@ -213,9 +214,6 @@ include("navbar.php");
         $uid = $_POST['sel_office'];
         
 
-        echo 
-
-
         $sql = "INSERT INTO project(recid, name, money, yid, uid) VALUES($num, '$name', $money, $yid, '$uid')";
 
         $result =  dbQuery($sql);
@@ -224,20 +222,20 @@ include("navbar.php");
         }
     }
 
-    if(isset($_POST["editSave"])){
-        $tid = $_POST['tid'];
-        $tstatus = $_POST['tstatus'];
-        $gid = $_POST['editGroup'];
-        $cid = $_POST['editClass'];
-        $tnumber = $_POST['tnumber'];
-        $tname = $_POST['tname'];
+    if(isset($_POST["btnEdit"])){
+        $pid = $_POST['pid'];
+        $uid = $_POST['sel_office'];
+        $sel_year = $_POST['sel_year'];
+        $prj_name = $_POST['prj_name'];
+        $money = $_POST['money'];
 
-        $sql ="UPDATE st_typetype SET  tnumber = '$tnumber', tname = '$tname', tstatus = $tstatus, cid = $cid, gid = $gid WHERE tid = $tid";
+        $sql ="UPDATE project  SET   name = '$prj_name', money = $money, yid = $sel_year, uid='$uid'  WHERE pid = $pid";
         $result = dbQuery($sql);
-       // echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='manage_class.php'>";
-        
         if($result){
-            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='manage_type.php'>";
+            echo "<script>alert('แก้ไขข้อมูลเรียบร้อยแล้ว')</script>";
+            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='project.php'>";
+        }else{
+            echo "<script>alert('มีบางอย่างผิดพลาด')</script>";
         }
     }
 ?>
