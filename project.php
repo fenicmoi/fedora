@@ -150,12 +150,7 @@ include("navbar.php");
                             <div class="input-group-prepend">
                                 <span class="input-group-text">หน่วยรับผิดชอบ</span>
                             </div>
-                            <select class="select2-single" name="sel_office" id="sel_office">
-                            <?php    
-                                while($row_user = dbFetchArray($result_user)){?>
-                                    <option  id='ีlist' value='<?=$row_user['ID'];?>''><?=$row_user['office']?></option>
-                            <?php }?>
-                            </select>
+                            <input type="text" name="sel_office" id="sel_office" class="form-control" value="-" required>
                         </div>
                     </div>
 

@@ -9,6 +9,29 @@ if($userID=''){
 include("header.php");
 include("navbar.php");
 ?>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<!-- Bootstrap -->
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style>
+body { background-color:#fafafa; font-family:'Open Sans';}
+
+    .treegrid-indent {
+        width: 0px;
+        height: 16px;
+        display: inline-block;
+        position: relative;
+    }
+
+    .treegrid-expander {
+        width: 0px;
+        height: 16px;
+        display: inline-block;
+        position: relative;
+        left:-17px;
+        cursor: pointer;
+    }
+</style>
 <script>
 
 $(document).ready(function(){
@@ -72,30 +95,40 @@ $(document).ready(function(){
                 </button>
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-hover" id="myTable">
+                <table class="table table-bordered table-hover" id="tree-table">
                         <thead>
                             <th>หมายเลขกลุ่ม</th>
                             <th>ชื่อกลุ่ม (GROUP)</th>
-                            <th>จำนวนชนิด (Class)</th>
-                            <th><i class="fas fa-cog"></i></th>
+                
                         </thead>
                         <tbody>
-                        <?php   
-                            $sql ="SELECT * FROM st_group ORDER BY gid DESC";
-                            $result = dbQuery($sql);
-                            while ($row = dbFetchArray($result)) {
-                                $gid = $row['gid'];
-                                $sqlcount = "SELECT gid FROM st_class WHERE gid = $gid";                  //นับจำนวน  class 
-                                $resultCount = dbQuery($sqlcount);
-                                $numrow = dbNumRows($resultCount);
-                                echo "<tr>
-                                         <td>".$row['gnumber']."</td>
-                                         <td>".$row['gname']."</td>
-                                         <td>".$numrow ."</td>
-                                         <td><button class='btn btn-outline-dark btn-sm'><i class='fas fa-pencil-alt'></i></button></td>
-                                     </tr>";
-                            }
-                        ?>
+                        <?php  
+                            $sql1 = "SELECT * FROM st_group ORDER BY gid ";
+                            $result = dbQuery($sql1);
+                            while ($row1 = dbFetchArray($result)) {?>
+                                <tr data-id ="1" data-parent="0" data-level="1">
+                                    <td data-column="name"><?=$row1['gnumber'];?></td>
+                                    <td><?=$row1['gname'];?></td>
+                                </tr>
+                            <?php  
+                                $sql2 = "SELECT * FROM st_class WHERE gid = $row1[gid]";
+                                $result2 = dbQuery($sql2);
+                                $numrow = dbNumRows($result2);
+
+                                if($numrow != 0){
+                                    while ($row2 = dbFetchArray($result2)) {?>
+                                    <tr data-id="2" data-parent="1" data-level="2">
+                                        <td data-column="name"><?=$row2['cnumber'];?></td>
+                                        <td><?=$row2['cname'];?></td>
+                                    </tr> 
+
+                                    <?php    
+                                
+                                    
+                                    }  //end while
+                                }   //end if
+                            }  // end while
+                            ?>
                         </tbody>
                    </table>
             </div>
@@ -106,31 +139,26 @@ $(document).ready(function(){
 
         <!-- Button trigger modal -->
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
-          Launch
-        </button>
         
-        <!-- Modal -->
-        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <a class="btn btn-primary" data-toggle="modal" href='#modal-id'>Trigger modal</a>
+        <div class="modal fade" id="modal-id">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Modal title</h4>
                     </div>
                     <div class="modal-body">
-                        Body
+                        
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
+        
      
         
         <!-- Modal -->
@@ -174,4 +202,6 @@ $(document).ready(function(){
             </div>
         </div>
 </div> <!-- container -->
+<script src="js/javascript.js"></script>
+
 <?php  include("footer.php");  ?>    
