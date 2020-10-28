@@ -63,7 +63,7 @@ include("navbar.php");
                                          <td><?php echo $row['uid'];?></td>
                                          <td><a href="sub_project.php?pid=<?=$row['pid']?>" class="btn btn-outline-primary btn-block btn-sm"><i class="fas fa-eye"></i> </a></td>
                                          <td>
-                                            <a class="btn btn-outline-info btn-sm btn-block" 
+                                            <a class="btn btn-outline-warning btn-sm btn-block" 
                                                 onclick = "load_edit('<?=$row['pid']?>')" 
                                                 data-toggle="modal" 
                                                 data-target="#modelEdit">

@@ -108,10 +108,10 @@ $row = dbFetchAssoc($result);
                                                 <td>".$row['reciveOffice']."</td>
                                                 <td>".$row['status']."</td>
                                                 <td>
-                                                    <a href='' class='btn btn-outline-info btn-sm btn-block'><i class='fas fa-pencil-alt'></i></a>    
+                                                    <a  class='btn btn-outline-warning btn-sm btn-block'><i class='fas fa-pencil-alt'></i></a>    
                                                 </td>
                                                 <td>
-                                                    <a href='' class='btn btn-outline-danger btn-sm btn-block'><i class='fas fa-trash-alt'></i></a>
+                                                    <button name='del' id='del' data-id=".$row['sid']." class='btn btn-outline-danger btn-sm btn-block'><i class='fas fa-trash-alt'></i></button>
                                                 </td>
                                             </tr>";
                                         $count++;
@@ -454,6 +454,27 @@ if(isset($_POST['save'])){
          
     }  // einf if
 }  //end if 
+
+
+// Deleate   
+if(isset($_GET['method']) == "del"){
+    $pid = $_GET['pid'];
+    $sid = $_GET['sid'];
+
+    $sql = "DELETE FROM subproject  WHERE sid = $sid ";
+  
+    
+    $result = dbQuery($sql);
+    if($result){
+        echo "<script>alert('ลบข้อมูลเรียบร้อยแล้ว')</script>";
+        echo "windows.location='sub_project.php";
+
+    }else{
+        echo "<script> Swal.fire('มีบางอย่างผิดพลาด') </script>";
+        echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php?pid=".$pid.">";
+    }
+    
+}
 ?>
 
 
@@ -554,5 +575,43 @@ if(isset($_POST['save'])){
 				
 			});
 			
-	</script>
+</script>
+
+<script>
+$(document).ready(function(){
+
+// Delete 
+$('#del').click(function(){
+  var el = this;
+ 
+  // Delete id
+  var deleteid = $(this).data('id');
+
+  var confirmalert = confirm("Are you sure?");
+  if (confirmalert == true) {
+     // AJAX Request
+     $.ajax({
+       url: 'remove-subproject.php',
+       type: 'POST',
+       data: { id:deleteid },
+       success: function(response){
+
+         if(response == 1){
+       // Remove row from HTML Table
+       $(el).closest('tr').css('background','tomato');
+       $(el).closest('tr').fadeOut(800,function(){
+          $(this).remove();
+       });
+         }else{
+       alert('Invalid ID.');
+         }
+
+       }
+     });
+  }
+
+});
+
+});
+</script>
    
