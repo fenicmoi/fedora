@@ -16,7 +16,7 @@ $sql = "SELECT * FROM project WHERE pid = $pid";
 $result = dbQuery($sql);
 $row = dbFetchAssoc($result);
 
-$sqlYear = "SELECT * FROM sys_year ORDER BY yid DESC";
+$sqlYear = "SELECT * FROM sys_year ORDER BY  yname DESC";
 $resultYear = dbQuery($sqlYear);
 
 ?>

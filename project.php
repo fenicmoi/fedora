@@ -83,7 +83,7 @@ include("navbar.php");
         </div> <!-- card -->
     <?php   
         //ปีงบประมาณ
-        $sql_y = "SELECT * FROM sys_year  ORDER BY yid DESC";
+        $sql_y = "SELECT * FROM sys_year  ORDER BY yname DESC";
         $result_y = dbQuery($sql_y);
 
     ?>        
