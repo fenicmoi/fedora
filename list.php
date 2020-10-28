@@ -55,7 +55,7 @@ include("navbar.php");
                                                 <td>".$row['listname']."</td>
                                                 <td>".$row['moneyID']."</td>
                                                 <td>".$row['descript']."</td>
-                                                <td>".format_number($row['amount'])."</td>
+                                                <td>".number_format($row['amount'])."</td>
                                                 <td>".$row['price']."</td>
                                                 <td>".$row['howto']."</td>
                                                 <td>".$row['reciveDate']."</td>
