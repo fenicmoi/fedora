@@ -83,6 +83,8 @@ $row = dbFetchAssoc($result);
                                <th><h6>อายุการใช้งาน</h6></th>
                                <th><h6>หน่วยงานใช้ทรัพย์สิน</h6></th>
                                <th><h6>สถานะ</h6></th>
+                               <th><i class="fas fa-edit"></i></th>
+                               <th><i class="fas fa-trash"></i></th>
                            </tr>
                            </thead>
                            <tbody>
@@ -105,6 +107,12 @@ $row = dbFetchAssoc($result);
                                                 <td>".$row['age']."</td>
                                                 <td>".$row['reciveOffice']."</td>
                                                 <td>".$row['status']."</td>
+                                                <td>
+                                                    <a href='' class='btn btn-outline-info btn-sm btn-block'><i class='fas fa-pencil-alt'></i></a>    
+                                                </td>
+                                                <td>
+                                                    <a href='' class='btn btn-outline-danger btn-sm btn-block'><i class='fas fa-trash-alt'></i></a>
+                                                </td>
                                             </tr>";
                                         $count++;
                                     }
