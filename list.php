@@ -59,7 +59,7 @@ include("navbar.php");
                                                 <td>".$row['amount']."</td>
                                                 <td>".number_format($row['price'])."</td>
                                                 <td>".$row['howto']."</td>
-                                                <td>".$row['reciveDate']."</td>
+                                                <td>".thaiDate($row['reciveDate'])."</td>
                                                 <td>".$row['lawID']."</td>
                                                 <td>".$row['age']."</td>
                                                 <td>".$row['reciveOffice']."</td>
