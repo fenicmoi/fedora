@@ -183,7 +183,7 @@ $row = dbFetchAssoc($result);
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">รายละเอียด</span>
                         </div>
-                        <input class="form-control" type="tel" name="descript" id="descript" value='-' required>
+                        <input class="form-control" type="text" name="descript" id="descript" value='-' required>
                     </div>
 
                     <div class="input-group mb-1">
@@ -211,7 +211,7 @@ $row = dbFetchAssoc($result);
                             <option value="ประกาศเชิญชวน">ประกาศเชิญชวน</option>
                             <option value="คัดเลือก">คัดเลือก</option>
                             <option value="เฉพาะเจาะจง">เฉพาะเจาะจง</option>
-                            <option value="อื่นๆ">อื่นๆ</option>
+                            <option value="อื่นๆ" selected>อื่นๆ</option>
                         </select>
 
                         <div class="input-group-prepend">
