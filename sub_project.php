@@ -17,6 +17,7 @@ $result = dbQuery($sql);
 $row = dbFetchAssoc($result);
 
 ?>
+<link rel="stylesheet" href="css/styleDelrow.css">
 <!-- select2 -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
@@ -89,7 +90,9 @@ $row = dbFetchAssoc($result);
                            </thead>
                            <tbody>
                                 <?php   
-                                    $sql = "SELECT * FROM subproject WHERE pid=$pid ORDER BY sid ASC";
+                                    //เลือกรายการที่มีรหัสโครงการเดียวกันและสถานะต้องแสดง
+                                    $sql = "SELECT * FROM subproject WHERE pid=$pid AND del = 1 ORDER BY sid ASC";
+                                    //echo $sql;
                                     $result = dbQuery($sql);
                                     $count = 1;
                                     while ($row = dbFetchArray($result)) {
@@ -111,7 +114,7 @@ $row = dbFetchAssoc($result);
                                                     <a  class='btn btn-outline-warning btn-sm btn-block'><i class='fas fa-pencil-alt'></i></a>    
                                                 </td>
                                                 <td>
-                                                    <button class="deleteItem" name='btnDel' id='btnDel' data-id="<?=$row['sid'];?>" class='btn btn-outline-danger btn-sm btn-block'><i class='fas fa-trash-alt'></i></button>
+                                                    <span class='delete btn btn-danger btn-sm text-white' data-id='<?php echo $row['sid']; ?>'><i class="fas fa-trash"></i></span>
                                                 </td>
                                             </tr>
                                     <?php         
@@ -458,3 +461,48 @@ if(isset($_POST['save'])){
 
 ?>
 
+
+<script>
+$(document).ready(function(){
+
+    // Delete 
+    $('.delete').click(function(){
+        var el = this;
+
+        // Delete id
+        var id = $(this).data('id');
+        
+        var confirmalert = confirm("Are you sure?");
+        if (confirmalert == true) {
+            // AJAX Request
+            $.ajax({
+                url: 'remove-subproject.php',
+                type: 'POST',
+                data: { id:id },
+                success: function(response){
+
+
+                    if(response == 1){
+                        // Remove row from HTML Table
+                        $(el).closest('tr').css('background','tomato');
+                        $(el).closest('tr').fadeOut(800,function(){
+                            $(this).remove();
+                        });
+                        
+                    }else{
+                       // alert('Invalid ID.'+id);
+                       Swal.fire({
+                            icon: 'error',
+                            title: 'อุ๊บบ...',
+                            text: 'มีบางอย่างผิดพลาด!',
+                            footer: '<a href>ติดต่อ admin</a>'
+                        })
+                    }
+
+
+                }
+            });
+        }
+    });
+});
+</script>
