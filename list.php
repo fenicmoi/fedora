@@ -46,7 +46,7 @@ include("navbar.php");
                            </thead>
                            <tbody>
                                 <?php   
-                                    $sql = "SELECT * FROM subproject  ORDER BY sid ASC";
+                                    $sql = "SELECT * FROM subproject  WHERE  del <> 0 ORDER BY sid ASC";
                                     $result = dbQuery($sql);
                                     $count = 1;
                                     while ($row = dbFetchArray($result)) {
@@ -139,7 +139,7 @@ include("navbar.php");
              age = '$age',
              reciveOffice = '$reciveOffice',
              status = '$status'
-             WHERE  sid = $sid   AND  del <> 0
+             WHERE  sid = $sid  
             ";
 
     $result  = dbQuery($sql);
