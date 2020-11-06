@@ -4,7 +4,6 @@ include "library/database.php";
 $id = 0;
 
 if(isset($_POST['id'])){
-  // $id = mysqli_real_escape_string($con,$_POST['id']);
    $id = $_POST['id'];
 
    $sql = "SELECT sid FROM subproject WHERE sid = $id ";
@@ -12,7 +11,6 @@ if(isset($_POST['id'])){
    $numrow = dbNumRows($result);
 
    if($numrow > 0){
-     //$sql = "DELETE FROM subproject WHERE sid = $id";
      $sql = "UPDATE subproject SET del = 0  WHERE sid=$id";
      dbQuery($sql);
 
