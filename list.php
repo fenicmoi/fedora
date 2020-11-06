@@ -139,7 +139,7 @@ include("navbar.php");
              age = '$age',
              reciveOffice = '$reciveOffice',
              status = '$status'
-             WHERE  sid = $sid
+             WHERE  sid = $sid   AND  del <> 0
             ";
 
     $result  = dbQuery($sql);
