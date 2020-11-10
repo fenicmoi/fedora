@@ -70,10 +70,10 @@ $sql_insert ="INSERT INTO subproject(recid, listname, fedID, moneyID, descript, 
                          '$reciveOffice', '$status', $pid, $tid, $cid, $gid, 1)";
 $result = dbQuery($sql_insert);
 if($result){
-    echo "YES";
+    echo  1;
     exit;
 }else{
-    echo "NO";
+    echo  0;
     exit;
 }
 ?>

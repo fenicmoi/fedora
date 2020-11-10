@@ -51,7 +51,7 @@ include("navbar.php");
                                     $count = 1;
                                     while ($row = dbFetchArray($result)) {
                                       echo "<tr>
-                                                <td>".$row['pid']."</td>
+                                                <td><a href='sub_project.php?pid=".$row['pid']."'>".$row['pid']."</a></td>
                                                 <td>".$row['fedID']."</td>
                                                 <td>".$row['listname']."</td>
                                                 <td>".$row['moneyID']."</td>
