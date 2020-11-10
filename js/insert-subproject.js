@@ -8,9 +8,8 @@ $(document).ready(function(){
                     type: 'POST',
                     data: $("#frmMain").serialize(),
                     success: function(response){
-                        console.log('this is'+response);
-                        if(response == 1){
-                           alert('Yes');
+                        if(response == "YES"){
+                           console.log('hello this is 1');
                          /*
                             // Remove row from HTML Table
                             $(el).closest('tr').css('background','tomato');
@@ -27,6 +26,7 @@ $(document).ready(function(){
                         })
                          */
                         }else{
+                            console.log('no');
                         Swal.fire({
                                 icon: 'error',
                                 title: 'อุ๊บบ...',

@@ -65,17 +65,15 @@ if($recid == 1){
 $fedID = $cnumber."-".$tnumber."-".$mask;
 
 $sql_insert ="INSERT INTO subproject(recid, listname, fedID, moneyID, descript, amount, price, howto, reciveDate, lawID, age, 
-                          reciveOffice, status, pid, tid, cid, gid) 
+                          reciveOffice, status, pid, tid, cid, gid, del) 
               VALUES($numrow, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
-                         '$reciveOffice', '$status', $pid, $tid, $cid, $gid)";
+                         '$reciveOffice', '$status', $pid, $tid, $cid, $gid, 1)";
 $result = dbQuery($sql_insert);
 if($result){
-    $success =1;
-    echo $success;
+    echo "YES";
     exit;
 }else{
-    $success =2;
-    echo $success;
+    echo "NO";
     exit;
 }
 ?>
