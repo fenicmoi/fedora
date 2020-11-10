@@ -28,7 +28,7 @@ include("navbar.php");
                    <table class="table table-striped table-bordered" id="myTable">
                        <thead class="thead-inverse">
                            <tr>
-                               <th><h6>ที่</h6></th>
+                               <th><h6>เลขที่โครงการ</h6></th>
                                <th><h6>รหัสครุภัณฑ์</h6></th>
                                <th><h6>รายการ</h6></th>
                                <th><h6>รหัสสินทรัพย์</h6></th>
@@ -44,14 +44,14 @@ include("navbar.php");
                                <th><h6><i class="fas fa-cog"></i></h6></th>
                            </tr>
                            </thead>
-                           <tbody>
+                           <tbody> 
                                 <?php   
-                                    $sql = "SELECT * FROM subproject  ORDER BY sid ASC";
+                                    $sql = "SELECT * FROM subproject  WHERE  del <> 0 ORDER BY sid ASC";
                                     $result = dbQuery($sql);
                                     $count = 1;
                                     while ($row = dbFetchArray($result)) {
                                       echo "<tr>
-                                                <td>".$count."</td>
+                                                <td>".$row['pid']."</td>
                                                 <td>".$row['fedID']."</td>
                                                 <td>".$row['listname']."</td>
                                                 <td>".$row['moneyID']."</td>
@@ -139,7 +139,7 @@ include("navbar.php");
              age = '$age',
              reciveOffice = '$reciveOffice',
              status = '$status'
-             WHERE  sid = $sid
+             WHERE  sid = $sid  
             ";
 
     $result  = dbQuery($sql);
