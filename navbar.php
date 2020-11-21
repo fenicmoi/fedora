@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
     <a class="navbar-brand" href="#">ระบบบริหารพัสดุจังหวัดพัทลุง</a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
