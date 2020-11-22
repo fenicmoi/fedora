@@ -1,6 +1,7 @@
 
 <?php include("header.php");?>
 <?php  include("navbar.php");?>
+
 <section class='bg-light min-wh-100'>
    <div class="container-fluse">
        <div class="row">
@@ -110,18 +111,28 @@
                                         </div>
                                     </div>
                                     <div class="col-sm">
-                                    <div class="row">
-                                            <div class="col-sm-3">
-                                                 <img src="https://picsum.photos/id/1003/400/300" class="w-100">
-                                            </div>
-                                            <div class="col-sm">
-                                                <h3>Lorem, ipsum dolor.</h3>
-                                                <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                        <div class="row">
+                                                <div class="col-sm-3">
+                                                    <img src="https://picsum.photos/id/1003/400/300" class="w-100">
+                                                </div>
+                                                <div class="col-sm">
+                                                    <h3>Lorem, ipsum dolor.</h3>
+                                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                Item Manager
+                            </div>
+                            <div class="card-body">hi </div>
                         </div>
                     </div>
                 </div>
