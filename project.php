@@ -19,7 +19,7 @@ include("navbar.php");
 <div class="container-fluid">
 
         
-        <div class="card ">
+        <div class="card mt-2">
             <div class="card-header">
                 <span class="font-weight-bold"><i class="fas fa-th"></i> รายชื่อโครงการรวม</span>
                 <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId">
