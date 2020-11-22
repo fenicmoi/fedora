@@ -1,6 +1,15 @@
+<?php   
+session_start();
+$UserID =  $_SESSION['UserID'];
+$breadcom = "deskboard";
 
-<?php include("header.php");?>
-<?php  include("navbar.php");?>
+if($userID=''){
+    echo "<script>window.location.href='index.php'</script>";
+}
+
+include ("header.php");
+include("navbar.php");
+?>
 
 <section class='bg-light min-wh-100'>
    <div class="container-fluse">
@@ -21,7 +30,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        <li class="breadcrumb-item active" aria-current="page">deskboard</li>
                     </ol>
                 </nav>
                 <div class="row">
