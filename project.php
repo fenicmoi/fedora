@@ -6,8 +6,6 @@ if($userID=''){
     echo "<script>window.location.href='index.php'</script>";
 }
 
-
-
 include("header.php");
 include("navbar.php");
 
@@ -116,6 +114,18 @@ include("navbar.php");
                         <input type="text" name="txtDate" id="txtDate" class="form-control" value="<?php echo DateThai();?>" disabled>
                     </div>  
 
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">แหล่งงบประมาณ</span>
+                            </div>
+                            <select name="owner" id="owner">
+                                <option value="งบจังหวัด">งบจังหวัด</option>
+                                <option value="งบกลุ่มจังหวัด">งบกลุ่มจังหวัด</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group">            
                         <div class="input-group mb3">
                             <div class="input-group-prepend">
@@ -213,9 +223,10 @@ include("navbar.php");
         $name = $_POST['prj_name'];
         $money = $_POST['money'];
         $uid = $_POST['sel_office'];
+        $owner = $_POST['owner'];
         
 
-        $sql = "INSERT INTO project(recid, name, money, yid, uid) VALUES($num, '$name', $money, $yid, '$uid')";
+        $sql = "INSERT INTO project(recid, name, money, yid, uid, owner) VALUES($num, '$name', $money, $yid, '$uid', $owner)";
 
         $result =  dbQuery($sql);
         if($result){

@@ -33,6 +33,10 @@ $row = dbFetchAssoc($result);
                                 <span class="input-group-text" id="basic-addon1">เจ้าของโครงการ</span>
                             </div>
                             <input type="text"  class="form-control" value="<?=$row['uid'];?>" disabled>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">แหล่งงบประมาณ</span>
+                            </div>
+                            <input type="text" value="<?php echo $row['owner'];?>">
                     </div>
 
                     <div class="input-group mb-3">

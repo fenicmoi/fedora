@@ -8,6 +8,12 @@ if($userID=''){
 
 include("header.php");
 include("navbar.php");
+
+//count  project province
+$sql = "SELECT pid FROM project WHERE owner = 'งบจังหวัด'";
+$result = dbQuery($sql);
+$sumProvince = dbNumRows($result);
+
 ?>
 
 <section class='bg-light min-wh-100 mt-2'>
@@ -23,9 +29,6 @@ include("navbar.php");
                 </div>
             </div>
            <div class="col">
-                <div class="alert alert-primary" role="alert">
-                    This is a primary alert—check it out!
-                </div>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -50,7 +53,7 @@ include("navbar.php");
                                 <div class="row mt-3">
                                     <div class="col-sm bg-success text-white">
                                         <div class="text-center p-4">
-                                            <h2>37</h2>
+                                            <h2><?php echo $sumProvince;?></h2>
                                             <p>โครงการจังหวัด</p>
                                         </div>
                                     </div>
