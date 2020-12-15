@@ -57,7 +57,7 @@ function msgError(){
                 timer: 1500
             })
         setTimeout(function(){ 
-                window.location.href='frontpage.php'
+                window.location.href='deskboard.php'
             }, 3000);
         </script>";
 }
