@@ -15,6 +15,7 @@ session_start();
                       $_SESSION["UserID"] = $row["ID"];
                       $_SESSION["User"] = $row["Firstname"]." ".$row["Lastname"];
                       $_SESSION["Userlevel"] = $row["Userlevel"];
+                     
 
                       if($_SESSION["Userlevel"]=="A"){ 
                           msgSuccess();
@@ -56,7 +57,7 @@ function msgError(){
                 timer: 1500
             })
         setTimeout(function(){ 
-                window.location.href='frontpage.php'
+                window.location.href='deskboard.php'
             }, 3000);
         </script>";
 }

@@ -5,28 +5,20 @@ $(document).ready(function(){
         var el = this;
                 $.ajax({
                     url: 'insert-item.php',
+                    async: false,
                     type: 'POST',
                     data: $("#frmMain").serialize(),
                     success: function(response){
-                        if(response == "YES"){
-                           console.log('hello this is 1');
-                         /*
-                            // Remove row from HTML Table
-                            $(el).closest('tr').css('background','tomato');
-                            $(el).closest('tr').fadeOut(800,function(){
-                                $(this).remove();
-                            });
-                         */
-                        /*
+                        if(response == 1){
+                           
                         Swal.fire({
                             icon: 'success',
                             title: 'บันทึกข้อมูลเรียบร้อยแล้ว',
                             text: 'มีบางอย่างผิดพลาด!',
                             footer: '<a href>ติดต่อ admin</a>'
                         })
-                         */
+                        
                         }else{
-                            console.log('no');
                         Swal.fire({
                                 icon: 'error',
                                 title: 'อุ๊บบ...',

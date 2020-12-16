@@ -9,7 +9,6 @@ if($userID=''){
 include("header.php");
 include("navbar.php");
 
-
 $pid = $_GET['pid'];
 $sql = "SELECT p.*, y.yname FROM project  as p
         INNER JOIN sys_year as y  ON  p.yid = y.yid  
@@ -22,9 +21,6 @@ $row = dbFetchAssoc($result);
 <!-- select2 -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-<script src="js/hiren.js"></script>     <!-- จัดการลำดับชั้น  -->
-<script src="js/del-subproject"></script>   <!--  การลบรายการ  -->
-<script src="js/insert-subproject.js"></script>  <!-- การเพิ่มรายการ -->
 
 <div class="container-fluid">
     <div class="row">
@@ -37,6 +33,10 @@ $row = dbFetchAssoc($result);
                                 <span class="input-group-text" id="basic-addon1">เจ้าของโครงการ</span>
                             </div>
                             <input type="text"  class="form-control" value="<?=$row['uid'];?>" disabled>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">แหล่งงบประมาณ</span>
+                            </div>
+                            <input type="text" value="<?php echo $row['owner'];?>">
                     </div>
 
                     <div class="input-group mb-3">
@@ -144,7 +144,7 @@ $row = dbFetchAssoc($result);
                     </button>
             </div>
             <div class="modal-body">
-                <form name="frmMain" id="frmMain" method="post" >
+                <form method="post" action="#">
 
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
@@ -226,7 +226,7 @@ $row = dbFetchAssoc($result);
                         <label>&nbsp;</label>
                             <span class="input-group-text" id="basic-addon1">วันตรวจรับ</span>
                         </div>
-                        <input type="date" id="reciveDate" name="reciveDate"  class="form-control col-3"  required>
+                        <input type="date" id="reciveDate" name="reciveDate"  class="form-control col-3" required>
                     </div>
 
                     <div class="input-group mb-1">
@@ -250,9 +250,9 @@ $row = dbFetchAssoc($result);
                             <span class="input-group-text" id="basic-addon1">สภาพ</span>
                         </div>
                         <select name="status" id="status" class="form-control col-3" required>
-                            <option value="ดี" selected>ดี</option>
+                            <option value="0">-- เลือก --</option>
+                            <option value="ดี">ดี</option>
                             <option value="ชำรุด">ชำรุด</option>
-                            <option value="จำหน่าย">จำหน่าย</option>
                         </select>
                     </div>
 
@@ -295,4 +295,328 @@ $row = dbFetchAssoc($result);
     </div>
 </div>
 
+<?php   
+// Insert subproject   
+if(isset($_POST['save'])){
+    $pid= $_POST['pid'];         // รหัสโครงการ
+    $acopy = $_POST['acopy'];    // ทำซ้ำหรือไม่
+    $numRep = $_POST['txtRep'];  //จำนวนที่ต้องการทำซ้ำ
 
+
+    $listname = $_POST['listname'];
+    $moneyID = $_POST['moneyID'];
+    $descript = $_POST['descript'];
+    $amount = $_POST['amount'];
+    $price = $_POST['price'];
+    $howto = $_POST['howto'];
+    $reciveDate = $_POST['reciveDate'];
+    $lawID = $_POST['lawID'];
+    $age = $_POST['age'];
+    $reciveOffice = $_POST['reciveOffice'];
+    $status = $_POST['status'];
+  
+    $tid = $_POST['tnumber'];
+    $cid = $_POST['cnumber'];
+    $gid = $_POST['gnumber'];
+
+
+
+    if($acopy == "1"){        //1 =  มีการทำซ้ำ
+
+        for ($i=0; $i < $numRep; $i++) { 
+
+            //ส่วนการดึงลดับพัสดุ โดยใช้วิธีการเลือกทั้งรายการในประเภทไปเลย  ในการทำงาน
+            $sql_recid = "SELECT recid FROM subproject WHERE  tid = $tid AND cid = $cid AND gid = $gid"; 
+            $result_recid = dbQuery($sql_recid);
+            $numrow = dbNumRows($result_recid);
+            
+            if($numrow == 0 ){         
+                $numrow = 1;    //ถ้าไม่มีเลย  ให้  numrow = 1
+            }else{
+                $numrow = $numrow + 1;      //ถ้ามี numrow +1
+            }
+
+
+                //ส่วนการสร้างชุดหมายเลขครุภัณฑ์
+                $sql_gid = "SELECT gnumber FROM st_group WHERE gid = $gid";
+                $result_gid = dbQuery($sql_gid);
+                $row_gid = dbFetchArray($result_gid);
+                $gnumber = $row_gid['gnumber'];
+
+
+                //ดึงหมายเลขประเภท
+                $sql_cid = "SELECT cnumber FROM st_class WHERE cid = $cid";
+                $result_cid = dbQuery($sql_cid);
+                $row_cid =dbFetchArray($result_cid);
+                $cnumber = $row_cid['cnumber'];
+
+                //ดึงหมายเลขชนิด  
+                $sql_tid = "SELECT tnumber FROM st_typetype WHERE tid = $tid";
+                $result_tid = dbQuery($sql_tid);
+                $row_tid = dbFetchArray($result_tid);
+                $tnumber = $row_tid['tnumber'];
+
+
+                //จัดการ format
+                $recid  = strlen($numrow);    //นับจำนวนหลักของจำนวนแถว
+
+                if($recid == 1){                //0001
+                    $mask = "000".$numrow;
+                }elseif($recid ==2){            //001
+                    $mask = "00".$numrow;
+                }elseif($recid == 3){           //01
+                    $mask = "0".$numrow;
+                }elseif($recid == 4 ){
+                    $mask = $numrow;
+                }
+
+                $fedID = $cnumber."-".$tnumber."-".$mask;
+
+
+                
+                $sql_insert ="INSERT INTO subproject(
+                    recid, listname, fedID, moneyID, descript, amount, price, howto, reciveDate, lawID, age, reciveOffice, status, pid, tid, cid, gid
+                ) VALUES($numrow, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
+                    '$reciveOffice', '$status', $pid, $tid, $cid, $gid
+                ) ";
+                    $result = dbQuery($sql_insert);
+
+        }  //end for
+
+        if($result){
+            echo "<script> alert('บันทึกรายการเรียบร้อยแล้ว')</script>";
+            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
+            
+        }else{
+            echo "<script> alert('มีบางอย่างผิดพลาด') </script>";
+            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
+        }
+    }else{  //กรณีทำรายการเดียว
+
+        
+         //ตรวจสอบว่ามีรายการครุภัณฑ์ที่อยู่ใน group class type 
+        $sql_recid = "SELECT recid FROM subproject WHERE  tid = $tid AND cid = $cid AND gid = $gid";
+ 
+        $result_recid = dbQuery($sql_recid);
+        $numrow = dbNumRows($result_recid);
+        if($numrow == 0 ){
+            $numrow = 1;
+        }else{
+            $numrow = $numrow+1;
+        }
+
+        //สร้างหมายเลขครุภัณฑ์
+        //ตรวจสอบ
+
+
+        
+
+        //ดึงหมายเลขกลุ่มครุภัณฑ์
+        $sql_gid = "SELECT gnumber FROM st_group WHERE gid = $gid";
+        $result_gid = dbQuery($sql_gid);
+        $row_gid = dbFetchArray($result_gid);
+        $gnumber = $row_gid['gnumber'];
+
+
+        //ดึงหมายเลขประเภท
+        $sql_cid = "SELECT cnumber FROM st_class WHERE cid = $cid";
+        $result_cid = dbQuery($sql_cid);
+        $row_cid =dbFetchArray($result_cid);
+        $cnumber = $row_cid['cnumber'];
+
+        //ดึงหมายเลขชนิด  
+        $sql_tid = "SELECT tnumber FROM st_typetype WHERE tid = $tid";
+        $result_tid = dbQuery($sql_tid);
+        $row_tid = dbFetchArray($result_tid);
+        $tnumber = $row_tid['tnumber'];
+
+
+        //จัดการ format
+        $recid  = strlen($numrow);
+
+        if($recid == 1){
+            $mask = "000".$numrow;
+        }elseif($recid ==2){
+            $mask = "00".$numrow;
+        }elseif($recid == 3){
+            $mask = "0".$numrow;
+        }
+
+        $fedID = $cnumber."-".$tnumber."-".$mask;
+
+
+        
+        $sql_insert ="INSERT INTO subproject(
+            recid, listname, fedID, moneyID, descript, amount, price, howto, reciveDate, lawID, age, reciveOffice, status, pid, tid, cid, gid
+        ) VALUES($numrow, '$listname', '$fedID', '$moneyID', '$descript', '$amount', $price, '$howto', '$reciveDate', '$lawID', '$age',
+            '$reciveOffice', '$status', $pid, $tid, $cid, $gid
+        ) ";
+       $result = dbQuery($sql_insert);
+       if($result){
+            echo "<script>alert('บันทึกรายการเรียบร้อยแล้ว')</script>";
+            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
+        }else{
+            echo "<script>alert('มีบางอย่างผิดพลาด')</script>";
+            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='sub_project.php'>";
+         }
+         
+    }  // einf if
+}  //end if 
+
+?>
+<script>
+
+			
+$(function(){
+    
+    //เรียกใช้งาน Select2
+    $(".select2-single").select2({ width: "500px", dropdownCssClass: "bigdrop"});
+    
+    //ดึงข้อมูล province จากไฟล์ get_data.php
+    $.ajax({
+        url:"get_data_php53.php",
+        dataType: "json", //กำหนดให้มีรูปแบบเป็น Json
+        data:{show_province:'show_province'}, //ส่งค่าตัวแปร show_province เพื่อดึงข้อมูล จังหวัด
+        success:function(data){
+            
+            //วนลูปแสดงข้อมูล ที่ได้จาก ตัวแปร data
+            $.each(data, function( index, value ) {
+                //แทรก Elements ใน id province  ด้วยคำสั่ง append
+                  $("#gnumber").append("<option value='"+ value.gid +"'> " +value.gnumber + value.gname + "</option>");
+            });
+        }
+    });
+    
+    
+    //แสดงข้อมูล อำเภอ  โดยใช้คำสั่ง change จะทำงานกรณีมีการเปลี่ยนแปลงที่ #province
+    $("#gnumber").change(function(){
+
+        //กำหนดให้ ตัวแปร province มีค่าเท่ากับ ค่าของ #province ที่กำลังถูกเลือกในขณะนั้น
+        var province_id = $(this).val();
+        
+        $.ajax({
+            url:"get_data_php53.php",
+            dataType: "json",//กำหนดให้มีรูปแบบเป็น Json
+            data:{province_id:province_id},//ส่งค่าตัวแปร province_id เพื่อดึงข้อมูล อำเภอ ที่มี province_id เท่ากับค่าที่ส่งไป
+            success:function(data){
+                
+                //กำหนดให้ข้อมูลใน #amphur เป็นค่าว่าง
+                $("#cnumber").text("");
+                
+                //วนลูปแสดงข้อมูล ที่ได้จาก ตัวแปร data  
+                $.each(data, function( index, value ) {
+                    
+                    //แทรก Elements ข้อมูลที่ได้  ใน id amphur  ด้วยคำสั่ง append
+                      $("#cnumber").append("<option value='"+ value.cid +"'> " + value.cnumber+"."+value.cname + "</option>");
+                });
+            }
+        });
+
+    });
+    
+    //แสดงข้อมูลตำบล โดยใช้คำสั่ง change จะทำงานกรณีมีการเปลี่ยนแปลงที่  #amphur
+    $("#cnumber").change(function(){
+        
+        //กำหนดให้ ตัวแปร amphur_id มีค่าเท่ากับ ค่าของ  #amphur ที่กำลังถูกเลือกในขณะนั้น
+        var amphur_id = $(this).val();
+        
+        $.ajax({
+            url:"get_data_php53.php",
+            dataType: "json",//กำหนดให้มีรูปแบบเป็น Json
+            data:{amphur_id:amphur_id},//ส่งค่าตัวแปร amphur_id เพื่อดึงข้อมูล ตำบล ที่มี amphur_id เท่ากับค่าที่ส่งไป
+            success:function(data){
+                
+                  //กำหนดให้ข้อมูลใน #district เป็นค่าว่าง
+                  $("#tnumber").text("");
+                  
+                //วนลูปแสดงข้อมูล ที่ได้จาก ตัวแปร data  
+                $.each(data, function( index, value ) {
+                    
+                  //แทรก Elements ข้อมูลที่ได้  ใน id district  ด้วยคำสั่ง append
+                  $("#tnumber").append("<option value='" + value.tid + "'> " + value.tnumber +"."+ value.tname + "</option>");
+                });
+            }
+        });
+        
+    });
+    
+    //คำสั่ง change จะทำงานกรณีมีการเปลี่ยนแปลงที่  #district 
+    $("#tnumber").change(function(){
+
+        
+        // //นำข้อมูลรายการ จังหวัด ที่เลือก มาใส่ไว้ในตัวแปร province
+        // var province = $("#gnumber option:selected").text();
+        
+        // //นำข้อมูลรายการ อำเภอ ที่เลือก มาใส่ไว้ในตัวแปร amphur
+        // var amphur = $("#cnumber option:selected").text();
+        
+        // //นำข้อมูลรายการ ตำบล ที่เลือก มาใส่ไว้ในตัวแปร district
+        // var district = $("#tnumber option:selected").text();
+        
+        // //ใช้คำสั่ง alert แสดงข้อมูลที่ได้
+        // alert("คุณได้เลือก :  กลุ่ม : " + gnumber + " ประเภท : "+ cnumber + "  ชนิด : " + tnumber );
+        
+    });
+    
+    
+});
+
+</script>
+
+<script>
+$(document).ready(function(){
+
+    // Delete 
+    $('.delete').click(function(){
+        var el = this;
+
+        // Delete id
+        var id = $(this).data('id');
+        
+        Swal.fire({
+            title: 'กำลังจะลบข้อมูล?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ใช่, ลบมันเลย!',
+            cancelButtonText: 'ไม่ลบ'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: 'remove-subproject.php',
+                    type: 'POST',
+                    data: { id:id },
+                    success: function(response){
+
+
+                        if(response == 1){
+                            // Remove row from HTML Table
+                            $(el).closest('tr').css('background','tomato');
+                            $(el).closest('tr').fadeOut(800,function(){
+                                $(this).remove();
+                            });
+                            
+                        }else{
+                        // alert('Invalid ID.'+id);
+                        Swal.fire({
+                                icon: 'error',
+                                title: 'อุ๊บบ...',
+                                text: 'มีบางอย่างผิดพลาด!',
+                                footer: '<a href>ติดต่อ admin</a>'
+                            })
+                        }
+
+
+                    }
+                });
+            }
+        })
+        
+        if (confirmalert == true) {
+            // AJAX Request
+            cosole.log('hello')
+        }
+    });
+});
+</script>

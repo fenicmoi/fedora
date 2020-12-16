@@ -1,9 +1,7 @@
-$(document).ready(function(){
 
-// Delete 
-$('.delete').click(function(){
+$('#btnDel').click(function(){
     var el = this;
-
+      console.log('hi');
     // Delete id
     var id = $(this).data('id');
     
@@ -46,5 +44,4 @@ $('.delete').click(function(){
             });
         }
     })
-});
 });
