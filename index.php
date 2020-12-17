@@ -2,6 +2,7 @@
 include("header.php");
 include("navbar.php");
 
+//menu for admin
 @$menu = $_GET['menu'];
 if($menu == ''){
     $menu = 'home';
