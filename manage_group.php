@@ -1,13 +1,10 @@
 <?php   
-session_start();
 $UserID =  $_SESSION['UserID'];
 
 if($userID=''){
     echo "<script>window.location.href='index.php'</script>";
 }
 
-include("header.php");
-include("navbar.php");
 ?>
 <script>
 

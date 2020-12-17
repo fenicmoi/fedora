@@ -1,13 +1,10 @@
 <?php   
-session_start();
+
 $UserID =  $_SESSION['UserID'];
 
 if($userID=''){
     echo "<script>window.location.href='index.php'</script>";
 }
-
-include("header.php");
-include("navbar.php");
 ?>
 <!-- select2 -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
