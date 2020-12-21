@@ -16,10 +16,8 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle " href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">รายงาน<i class="fas fa-print"></i></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="manage_group.php">จัดการกลุ่มครุภัณฑ์ (Group)</a>
-                    <a class="dropdown-item" href="manage_class.php">จัดการประเภทครุภัณฑ์ (Class)</a>
-                    <a class="dropdown-item" href="manage_type.php">จัดการชนิดครุภัณฑ์ (Type)</a>
-                    <a class="dropdown-item" href="project.php">จัดการโครงการ (Project)</a>
+                    <a class="dropdown-item" href="?menu=repProvince">รายงานงบจังหวัด</a>
+                    <a class="dropdown-item" href="?menu=repGroup">รายงานงบกลุ่มจังหวัด</a>
                 </div>
             </li> 
             <li class="nav-item dropdown">

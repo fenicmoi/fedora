@@ -18,14 +18,14 @@ $sumGroup = dbNumRows($result);
        <div class="row">
            <div class="col-sm-3 col-md-2">
                 <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action active">
+                        <a href="?menu=home" class="list-group-item list-group-item-action active">
                             <i class="fas fa-home"></i> หน้าหลัก 
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-angle-right"></i> โครงการจังหวัด</a>
-                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-angle-right"></i> โครงการกลุ่มจังหวัด</a>
-                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-angle-right"></i> รายการครุภัณฑ์</a>
-                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-book"></i> คู่มือการใช้ระบบ</a>
-                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-book"></i> คู่มือหมายเลขครุภัณฑ์</a>
+                        <a href="?menu=userProvince" class="list-group-item list-group-item-action"><i class="fas fa-angle-right"></i> โครงการจังหวัด</a>
+                        <a href="?menu=userGroup" class="list-group-item list-group-item-action"><i class="fas fa-angle-right"></i> โครงการกลุ่มจังหวัด</a>
+                        <a href="?menu=userList" class="list-group-item list-group-item-action"><i class="fas fa-angle-right"></i> รายการครุภัณฑ์</a>
+                        <a href="paper/manual.pdf" class="list-group-item list-group-item-action" target="_blink"><i class="fas fa-book"></i> คู่มือการใช้ระบบ</a>
+                        <a href="paper/manual.pdf" class="list-group-item list-group-item-action" target="_blink"><i class="fas fa-book"></i> คู่มือหมายเลขครุภัณฑ์</a>
                 </div>
             </div>
            <div class="col">
@@ -63,7 +63,7 @@ $sumGroup = dbNumRows($result);
                                     </div>
                                     <div class="col-sm bg-info text-white">
                                         <div class="text-center p-4">
-                                            <h2>49</h2>
+                                            <h2><?php echo $sumProvince + $sumGroup;?></h2>
                                             <p>โครงการทั้งหมด</p>
                                         </div>
                                     </div>
@@ -94,51 +94,7 @@ $sumGroup = dbNumRows($result);
                             </div>
                         </div>
                     </div>
-                
-                
                 </div>
-                <!-- <div class="row mt-3">
-                    <div class="col-sm">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                 <img src="https://picsum.photos/id/237/400/300" class="w-100">
-                                            </div>
-                                            <div class="col-sm">
-                                                <h3>Lorem, ipsum dolor.</h3>
-                                                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm">
-                                        <div class="row">
-                                                <div class="col-sm-3">
-                                                    <img src="https://picsum.photos/id/1003/400/300" class="w-100">
-                                                </div>
-                                                <div class="col-sm">
-                                                    <h3>Lorem, ipsum dolor.</h3>
-                                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="row mt-3">
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-header">
-                                Item Manager
-                            </div>
-                            <div class="card-body">hi </div>
-                        </div>
-                    </div>
-                </div> -->
            </div>
        </div>
    </div>
