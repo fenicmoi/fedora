@@ -3,6 +3,7 @@ include("header.php");
 include("define.php");
 include("navbar.php");
 
+//menu for admin
 @$menu = $_GET['menu'];
 if($menu == ''){
     $menu = 'home';

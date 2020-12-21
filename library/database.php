@@ -24,8 +24,8 @@ $db_config=array(
 $db_config=array(
         "host"=>"localhost",  // กำหนด host
         "user"=>"root", // กำหนดชื่อ user
-        "pass"=>"hellojava",   // กำหนดรหัสผ่าน
-        "dbname"=>"stock",  // กำหนดชื่อฐานข้อมูล
+        "pass"=>"root",   // กำหนดรหัสผ่าน
+        "dbname"=>"phatthalun_stock",  // กำหนดชื่อฐานข้อมูล
         "charset"=>"utf8"  // กำหนด charset
     );
 
