@@ -35,6 +35,7 @@
                                 <tbody>
                                 <?php   
                                     $sql ="SELECT  p.*, y.yname FROM project  p
+                                        WHERE 
                                         INNER JOIN  sys_year  y   ON (p.yid = y.yid) 
                                         ORDER BY  pid DESC";
                                     $result = dbQuery($sql);

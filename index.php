@@ -20,8 +20,10 @@ if($menu =='home'){
     include("manage_class.php");
 }elseif($menu == "type"){
     include("manage_type.php");
-}elseif($menu == "userProvince"){
-    include("user/project.php");
+}elseif($menu == "pjProvince"){
+    include("user/pjProvince.php");
+}elseif($menu == "pjGroup"){
+    include("user/pjGroup");
 }elseif($menu == 'subProject'){
     include("user/sub_project.php");
 }

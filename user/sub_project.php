@@ -59,8 +59,8 @@ $row = dbFetchAssoc($result);
             <div class="card">
                 <div class ="card-header bg-secondary text-white">
                     <span class="font-weight-bold"><i class="fas fa-th"></i>  รายการทรัพย์สินโครงการ</span>
-                    <a href="?menu=userProvince" class="btn btn-primary  float-right">
-                        <i class="fas fa-home"></i> หน้าหลัก
+                    <a href="?menu=pjProvince" class="btn btn-warning  float-right">
+                        <i class="fas fa-arrow-left"></i> หน้าหลักโครงการ
                     </a>
                 </div>
                 

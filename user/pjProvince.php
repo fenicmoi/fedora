@@ -35,8 +35,8 @@
                                 <tbody>
                                 <?php   
                                     $sql ="SELECT  p.*, y.yname FROM project  p
-                                        INNER JOIN  sys_year  y   ON (p.yid = y.yid) 
-                                        ORDER BY  pid DESC";
+                                           INNER JOIN  sys_year  y   ON (p.yid = y.yid) 
+                                           ORDER BY  p.pid DESC";
                                     $result = dbQuery($sql);
                                     while ($row = dbFetchArray($result)) {?>
                                         <tr>
