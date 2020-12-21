@@ -1,5 +1,6 @@
 <?php   
 include("header.php");
+include("define.php");
 include("navbar.php");
 
 @$menu = $_GET['menu'];

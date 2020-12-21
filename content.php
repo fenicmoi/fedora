@@ -44,7 +44,7 @@ $sumGroup = dbNumRows($result);
                                         <img src="img/blogger.png" class="w-100 rounded-circle">
                                     </div>
                                     <div class="col-sm mt-50">
-                                        <h3>ระบบฐานข้อมูลทะเบียนทรัพย์สินจังหวัดพัทลุง</h3>
+                                        <h3>ระบบฐานข้อมูลทะเบียนทรัพย์สิน<?php echo province;?></h3>
                                         <p>โครงการจังหวัด/โครงการกลุ่มจังหวัด</p>
                                     </div>
                                 </div>
