@@ -10,7 +10,7 @@
                         <a href="#" class="list-group-item list-group-item-action active">
                             <i class="fas fa-home"></i> หน้าหลัก 
                         </a>
-                        <a href="?menu=userProvince" class="list-group-item list-group-item-action"><i class="fas fa-angle-right"></i> โครงการจังหวัด</a>
+                        <a href="?menu=pjProvince" class="list-group-item list-group-item-action"><i class="fas fa-angle-right"></i> โครงการจังหวัด</a>
                         <a href="?menu=userGroup" class="list-group-item list-group-item-action"><i class="fas fa-angle-right"></i> โครงการกลุ่มจังหวัด</a>
                         <a href="?menu=userList" class="list-group-item list-group-item-action"><i class="fas fa-angle-right"></i> รายการครุภัณฑ์</a>
                         <a href="paper/manual.pdf" class="list-group-item list-group-item-action" target="_blink"><i class="fas fa-book"></i> คู่มือการใช้ระบบ</a>
