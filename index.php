@@ -32,6 +32,4 @@ if($menu =='home'){
     include("admin/edit-supproject.php");
 }
 
-
-include("footer.php");
 ?>

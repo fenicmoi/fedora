@@ -8,8 +8,8 @@
 
 <?php  
 
-include("library/database.php");
-include("library/function.php");
+include("../library/database.php");
+include("../library/function.php");
 $pid = $_POST['pid'];
 
 $sql = "SELECT * FROM project WHERE pid = $pid";
@@ -21,7 +21,7 @@ $resultYear = dbQuery($sqlYear);
 
 ?>
 
-            <form method="post" action="project.php">
+            <form method="post" action="index.php?menu=project">
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">

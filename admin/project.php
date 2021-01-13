@@ -12,8 +12,6 @@ if($userID=''){
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 <div class="container-fluid">
-
-        
         <div class="card mt-2">
             <div class="card-header">
                 <span class="font-weight-bold"><i class="fas fa-th"></i> โครงการทั้งหมด</span>
@@ -65,7 +63,9 @@ if($userID=''){
                                                 <i class="fas fa-pencil-alt"></i> 
                                             </a> 
                                          </td>
-                                         <td><a href="?pid=<?=$row['pid'];?>" class="btn btn-outline-danger btn-sm btn-block" ><i class="fas fa-trash-alt"></i></a></td>
+                                         <td>
+                                            <span class='delete btn btn-danger btn-sm text-white' data-id='<?php echo $row['pid']; ?>'><i class="fas fa-trash"></i></span>
+                                        </td>
                                      </tr>
                            <?php } ?>
                         </tbody>
@@ -76,194 +76,23 @@ if($userID=''){
               
             </div>
         </div> <!-- card -->
-    <?php   
-        //ปีงบประมาณ
+<?php   
+        //ปีงบประมาณ  เพื่อใช้ใน modal  ต่าง ๆ
         $sql_y = "SELECT * FROM sys_year  ORDER BY yname DESC";
         $result_y = dbQuery($sql_y);
+        include("modal_project.php")   //รวบรวม modal  เกี่ยวกับการจัดการ project 
+?>        
+</div> <!-- end container -->
 
-    ?>        
-
-     <!-- เพิ่มโครงการ -->
-     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-            <div class="modal-dialog" role="document" style="min-width: 800px">
-            <div class="modal-content">
-            <div class="modal-header bg-primary text-white"> <i class="fas fa-plus"></i> เพิ่มโครงการ
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <div class="modal-body">
-            <form method="post">
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">ปีงบประมาณ</span>
-                        </div>
-                        <select class="form-control col-4" name="sel_year" id="sel_year">
-                        <?php    
-                            while($row_y = dbFetchArray($result_y)){?>
-                                <option  id='ylist' value='<?=$row_y['yid'];?>''><?=$row_y['yname']?></option>
-                        <?php }?>
-                        </select>
-
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">วันที่บันทึก</span>
-                        </div>
-                        <input type="text" name="txtDate" id="txtDate" class="form-control" value="<?php echo DateThai();?>" disabled>
-                    </div>  
-
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">แหล่งงบประมาณ</span>
-                            </div>
-                            <select name="owner" id="owner">
-                                <option value="งบจังหวัด">งบจังหวัด</option>
-                                <option value="งบกลุ่มจังหวัด">งบกลุ่มจังหวัด</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">            
-                        <div class="input-group mb3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">ชื่อโครงการ</span>
-                            </div>
-                            <input type="text" name="prj_name" id="prj_name" class="form-control"  required="required" title="เพิ่มชื่อโครงการ">
-                        </div>
-                    </div>
-
-                    <div class="form-group">            
-                        <div class="input-group mb3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">งบประมาณ</span>
-                            </div>
-                            <input type="number" name="money" id="money" class="form-control" value=0 title="เพิ่มชื่อโครงการ">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">บาท</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <?php   
-                        //หน่วยรับผิดชอบ
-                        $sql_user = "SELECT * FROM user ORDER BY id ASC";
-                        $result_user  = dbQuery($sql_user);
-
-                    ?>
-                    
-                    <div class="form-group">            
-                        <div class="input-group mb3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">หน่วยรับผิดชอบ</span>
-                            </div>
-                            <input type="text" name="sel_office" id="sel_office" class="form-control" value="-" required>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">เจ้าหน้าที่</span>
-                            </div>
-                            <input type="text" name="txtUser" id="txtUser" class="form-control" value="<?php echo $_SESSION['User']?>" disabled>
-                        </div>
-                    </div>
-                    <div id="lblWarning"></div>
-                    <div id="lblWarning2"></div>  
-                    </div>
-                    <div class="card-footer">
-                            <center>
-                            <button class="btn btn-success  float-center" type="submit" name="save" id="save">
-                                <i class="fa fa-save"></i> บันทึก
-                            </button>
-                            </center>
-                    </div>
-                </form>
-            </div> <!-- main body -->
-        </div> <!-- modal content -->
-            </div>
-        </div>
-
-        <!-- Modal Display Edit -->
-        <div class="modal fade" id="modelEdit" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-warning">
-                        <h5 class="modal-title"><i class="fas fa-pen"></i> แก้ไขโครงการ </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <div class="modal-body">
-                         <div id="divDataview"></div> 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-</div> <!-- container -->
-
-<?php  
-
-
-    if(isset($_POST['save'])){
-        $yid = $_POST['sel_year'];
-        
-        $sql =  "SELECT recid FROM project WHERE yid=$yid";
-        $result = dbQuery($sql);
-        $num = dbNumRows($result);
-        $num++;
-        $name = $_POST['prj_name'];
-        $money = $_POST['money'];
-        $uid = $_POST['sel_office'];
-        $owner = $_POST['owner'];    //งบจังหวัด
-        
-
-        $sql = "INSERT INTO project(recid, name, money, yid, uid, owner) VALUES($num, '$name', $money, $yid, '$uid', '$owner')";
-       // print $sql;
-        $result =  dbQuery($sql);
-
-        if($result){
-            echo "<script>alert('บันทึกโครงการเรียบร้อยแล้ว')</script>";
-            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='?menu=project'>";
-        }else{
-            echo "<script>alert('มีบางอย่างผิดพลาด  กรุณาติดต่อ Admin')</script>";
-        }
-    
-    }
-
-    if(isset($_POST["btnEdit"])){
-        $pid = $_POST['pid'];
-        $uid = $_POST['sel_office'];
-        $sel_year = $_POST['sel_year'];
-        $prj_name = $_POST['prj_name'];
-        $money = $_POST['money'];
-
-        $sql ="UPDATE project  SET   name = '$prj_name', money = $money, yid = $sel_year, uid='$uid'  WHERE pid = $pid";
-        $result = dbQuery($sql);
-        if($result){
-            echo "<script>alert('แก้ไขข้อมูลเรียบร้อยแล้ว')</script>";
-            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='project.php'>";
-        }else{
-            echo "<script>alert('มีบางอย่างผิดพลาด')</script>";
-            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='project.php'>";
-        }
-    }
-?>
-
+<?php include("project_managment.php");?>    
 
 <script>
-
 function load_edit(pid){
 	 var sdata = {
          pid : pid,
      };
-	$("#divDataview").load("edit-project.php",sdata);
+	$("#divDataview").load("admin/edit-project.php",sdata);
 }
-
 </script>
-<?php  include("footer.php");  ?>    
+<script src="js/delete-project.js"></script>
+  

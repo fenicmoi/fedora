@@ -8,17 +8,17 @@ $(document).ready(function(){
         var id = $(this).data('id');
         
         Swal.fire({
-            title: 'กำลังจะลบข้อมูล?',
+            title: 'กำลังจะลบข้อมูลโครงการ?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'ใช่, ลบมันเลย!',
-            cancelButtonText: 'ไม่ลบ'
+            confirmButtonText: 'ใช่, ฉันจะลบ!',
+            cancelButtonText: 'ไว้ก่อนดีกว่า...'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '/admin/remove-subproject.php',
+                    url: 'remove-subproject.php',
                     type: 'POST',
                     data: { id:id },
                     success: function(response){
