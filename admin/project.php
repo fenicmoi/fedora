@@ -16,7 +16,7 @@ if($userID=''){
         
         <div class="card mt-2">
             <div class="card-header">
-                <span class="font-weight-bold"><i class="fas fa-th"></i> รายชื่อโครงการรวม</span>
+                <span class="font-weight-bold"><i class="fas fa-th"></i> โครงการทั้งหมด</span>
                 <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId">
                     <i class="fas fa-plus"></i> เพิ่มโครงการ
                 </button>
@@ -43,7 +43,7 @@ if($userID=''){
                             while ($row = dbFetchArray($result)) {?>
                                 <tr>
                                          <td><?php echo $row['pid'];?></td>
-                                         <td><a href="sub_project.php?pid=<?=$row['pid']?>" class="text-secondary"><?php echo $row['name'];?></a></td>
+                                         <td><a href="?menu=subproject&pid=<?=$row['pid']?>" class="text-secondary"><?php echo $row['name'];?></a></td>
                                          <td>
                                             <?php 
                                                 if($row['money']==0){
@@ -220,18 +220,20 @@ if($userID=''){
         $name = $_POST['prj_name'];
         $money = $_POST['money'];
         $uid = $_POST['sel_office'];
-        $owner = $_POST['owner'];
+        $owner = $_POST['owner'];    //งบจังหวัด
         
 
-        $sql = "INSERT INTO project(recid, name, money, yid, uid, owner) VALUES($num, '$name', $money, $yid, '$uid', $owner)";
-
+        $sql = "INSERT INTO project(recid, name, money, yid, uid, owner) VALUES($num, '$name', $money, $yid, '$uid', '$owner')";
+       // print $sql;
         $result =  dbQuery($sql);
+
         if($result){
             echo "<script>alert('บันทึกโครงการเรียบร้อยแล้ว')</script>";
-            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='project.php'>";
+            echo "<META HTTP-EQUIV='Refresh' Content='0'; URL='?menu=project'>";
         }else{
             echo "<script>alert('มีบางอย่างผิดพลาด  กรุณาติดต่อ Admin')</script>";
         }
+    
     }
 
     if(isset($_POST["btnEdit"])){

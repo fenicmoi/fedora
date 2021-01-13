@@ -1,20 +1,8 @@
-
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-<!-- <script src="js/jquery-3.5.1.min.js"></script> -->
-
-
-
 <?php  
-
-include("library/database.php");
-include("library/function.php");
-$sid = $_POST['sid'];
-
-$sql = "SELECT * FROM subproject WHERE sid = $sid";
-$result = dbQuery($sql);
-$row = dbFetchAssoc($result);
+ $sid = $_GET['sid'];
+ $sql = "SELECT * FROM subproject WHERE sid = $sid";
+ $result = dbQuery($sql);
+ $row = dbFetchAssoc($result);
 ?>
 
 <form method="post" action="list.php">
