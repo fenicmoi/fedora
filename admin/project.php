@@ -36,6 +36,7 @@ if($userID=''){
                         <?php   
                             $sql ="SELECT  p.*, y.yname FROM project  p
                                    INNER JOIN  sys_year  y   ON (p.yid = y.yid) 
+                                   WHERE del = 1
                                    ORDER BY  pid DESC";
                             $result = dbQuery($sql);
                             while ($row = dbFetchArray($result)) {?>

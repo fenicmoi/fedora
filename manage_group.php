@@ -101,12 +101,6 @@ $(document).ready(function(){
             </div>
         </div> <!-- card -->
 
-        <!-- Button trigger modal -->
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
-          Launch
-        </button>
         
         <!-- Modal -->
         <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -171,4 +165,3 @@ $(document).ready(function(){
             </div>
         </div>
 </div> <!-- container -->
-<?php  include("footer.php");  ?>    

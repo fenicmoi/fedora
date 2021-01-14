@@ -9,10 +9,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="?menu=project"><i class="fas fa-clipboard-list"></i> โครงการ</a>
             </li>
-            <li> <a class="nav-link" href="?menu=list"><i class="fas fa-clipboard-list"></i> ครุภัณฑ์</a></li>
-            <li><a class="nav-link" href="?menu=group"><i class="fab fa-delicious"></i> กลุ่มครุภัณฑ์</a></li>
-            <li><a class="nav-link" href="?menu=class"><i class="fab fa-dropbox"></i> ชนิดครุภัณฑ์</a></li>
-            <li><a class="nav-link" href="?menu=type"><i class="fas fa-chess-board"></i> ประเภทครุภัณฑ์</a></li>
+            <li> <a class="nav-link" href="?menu=list"><i class="fas fa-clipboard-list"></i> รายการครุภัณฑ์</a></li>
+            <li><a class="nav-link" href="?menu=group"><i class="fas fa-cog"></i> กลุ่มครุภัณฑ์</a></li>
+            <li><a class="nav-link" href="?menu=class"><i class="fas fa-cog"></i> ชนิดครุภัณฑ์</a></li>
+            <li><a class="nav-link" href="?menu=type"><i class="fas fa-cog"></i> ประเภทครุภัณฑ์</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle " href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">รายงาน<i class="fas fa-print"></i></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">

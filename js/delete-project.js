@@ -18,12 +18,12 @@ $(document).ready(function(){
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: 'remove-subproject.php',
+                    url: 'remove-project.php',
                     type: 'POST',
                     data: { id:id },
                     success: function(response){
 
-
+                        console.log('yes');
                         if(response == 1){
                             // Remove row from HTML Table
                             $(el).closest('tr').css('background','tomato');

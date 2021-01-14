@@ -38,7 +38,6 @@ if($userID=''){
                                <th><h6>อายุการใช้งาน</h6></th>
                                <th><h6>หน่วยงานใช้ทรัพย์สิน</h6></th>
                                <th><h6>สถานะ</h6></th>
-                               <th><h6><i class="fas fa-cog"></i></h6></th>
                            </tr>
                            </thead>
                            <tbody> 
@@ -61,14 +60,6 @@ if($userID=''){
                                                 <td>".$row['age']."</td>
                                                 <td>".$row['reciveOffice']."</td>
                                                 <td>".$row['status']."</td>"; ?>
-                                                <td>
-                                                    <a class='btn btn-outline-warning btn-sm'
-                                                       onclick = "load_edit('<?=$row['sid']?>')" 
-                                                       data-toggle ='modal'
-                                                       data-target='#modelEdit'>
-                                                       <i class='fas fa-edit'></i>
-                                                    </a>
-                                                </td>
                                             </tr>
                                 <?php             
                                         $count++;
@@ -104,10 +95,6 @@ if($userID=''){
 
 </div> <!-- container 2 -->
 
-
-
-
-<?php include("footer.php");?>
 <?php 
  if(isset($_POST['save'])){
 
