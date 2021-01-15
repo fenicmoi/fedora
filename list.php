@@ -16,7 +16,7 @@ if($userID=''){
             <div class="card">
                 <div class ="card-header bg-secondary text-white">
                     <span class="font-weight-bold"><i class="fas fa-th"></i>  รายการทรัพย์สินจังหวัด</span>
-                    <a href="project.php" class="btn btn-primary  float-right">
+                    <a href="?menu=project" class="btn btn-primary  float-right">
                         <i class="fas fa-home"></i> กลับหน้าโครงการ
                     </a>
                 </div>
