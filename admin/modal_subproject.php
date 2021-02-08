@@ -121,15 +121,23 @@
                             <option value="ชำรุด">ชำรุด</option>
                         </select>
                     </div>
+                    <label for="chkPassport">
+                        <input type="checkbox" id="chkPassport" />
+                         กำหนดจำนวนหมายเลขครุภัณฑ์เอง
+                    </label>
+                    <div class="input-group mb-1">
+                       
+                    </div>
+                  
 
-                    <div class="form-check">
+                    <div class="form-check alert-primary">
                         <label class="form-check-label">
                         <input type="radio" class="form-check-input" name="acopy" id="acopy" value="0" checked>
                          ไม่ทำซ้ำ
-                      </label>
+                       </label>
                     </div>
 
-                    <div class="form-check mb-1">
+                    <div class="form-check mb-1 alert-primary">
                         <label class="form-check-label">
                         <input type="radio" class="form-check-input" name="acopy" id="acopy" value="1">
                          ทำซ้ำ  <kbd>ใช้กรณีจำนวนหลายชิ้น และแจกจ่ายไปหลายหน่วยงาน</kbd>
