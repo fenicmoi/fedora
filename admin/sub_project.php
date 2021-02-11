@@ -1,5 +1,28 @@
 <?php   
 
+//create pdf
+require_once __DIR__ . '../../vendor/autoload.php';
+
+// เพิ่ม Font ให้กับ mPDF
+$defaultFontConfig = (new Mpdf\Config\FontVariables())->getDefaults();
+$fontData = $defaultFontConfig['fontdata'];
+$mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp',
+    'fontdata' => $fontData + [
+            'sarabun' => [ // ส่วนที่ต้องเป็น lower case ครับ
+                'R' => 'THSarabunNew.ttf',
+                'I' => 'THSarabunNewItalic.ttf',
+                'B' =>  'THSarabunNewBold.ttf',
+                'BI' => "THSarabunNewBoldItalic.ttf",
+            ]
+        ],
+]);
+
+ob_start(); // Start get HTML code
+// end create pdf
+
+
+
+
 $pid = $_GET['pid'];
 $sql = "SELECT p.*, y.yname FROM project  as p
         INNER JOIN sys_year as y  ON  p.yid = y.yid  
@@ -39,6 +62,7 @@ $row = dbFetchAssoc($result);
                                 <span class="input-group-text" id="basic-addon1">งบประมาณ</span>
                             </div>
                             <input type="text"  class="form-control col-1" value="<?=number_format($row['money']);?>" disabled>
+                            &nbsp;
                     </div>
                 </div>
             </div>
@@ -57,6 +81,7 @@ $row = dbFetchAssoc($result);
                     <a href="?menu=project" class="btn btn-primary  float-right">
                         <i class="fas fa-home"></i> กลับหน้าโครงการ
                     </a>
+                    <a class="btn btn-info float-right" href="report1.php?pid=<?=$pid?>" target="_blank"><i class="fas fa-print"></i> พิมพ์รายงาน</a>
                     <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId">
                         <i class="fas fa-plus"></i> เพิ่มรายการ
                     </button>
@@ -98,7 +123,7 @@ $row = dbFetchAssoc($result);
                                                 <td>".$row['moneyID']."</td>
                                                 <td>".$row['descript']."</td>
                                                 <td>".$row['amount']."</td>
-                                                <td>".$row['price']."</td>
+                                                <td>".number_format($row['price'])."</td>
                                                 <td>".$row['howto']."</td>
                                                 <td>".thaiDate($row['reciveDate'])."</td>
                                                 <td>".$row['lawID']."</td>
@@ -152,8 +177,7 @@ $row = dbFetchAssoc($result);
 
 <?php 
  include("modal_subproject.php");
-//  include("insert_subproject.php");
- include("subproject_managment.php")
+ include("subproject_managment.php");
  ?>
 
 <script>
