@@ -112,16 +112,16 @@ if($userID=''){
      $status  = $_POST['status'];
 
      $sql = "UPDATE subproject SET  
-             listname = '$listname',
-             moneyID = '$moneyID',
-             descript = '$descript',
-             amount = '$amount',
-             price = $price,
-             howto = '$howto',
-             reciveDate = '$reciveDate',
-             lawID = '$lawID',
-             age = '$age',
-             reciveOffice = '$reciveOffice',
+                    listname = '$listname',
+                    moneyID = '$moneyID',
+                    descript = '$descript',
+                    amount = '$amount',
+                    price = $price,
+                    howto = '$howto',
+                    reciveDate = '$reciveDate',
+                    lawID = '$lawID',
+                    age = '$age',
+                    reciveOffice = '$reciveOffice',
              status = '$status'
              WHERE  sid = $sid  
             ";

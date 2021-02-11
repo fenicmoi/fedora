@@ -5,9 +5,6 @@ include "library/database.php";
 
 if(isset($_POST['id'])){
    $id = $_POST['id'];
-
-   echo "<script>console.log(".$id."</script>";
-
    $sql = "SELECT sid FROM subproject WHERE sid = $id ";
    $result = dbQuery($sql);
    $numrow = dbNumRows($result);

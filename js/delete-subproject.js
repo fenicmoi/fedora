@@ -1,6 +1,5 @@
     
 $(document).ready(function(){
-    // Delete 
     $('.delete').click(function(){
         var el = this;
 
@@ -18,7 +17,7 @@ $(document).ready(function(){
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '/admin/remove-subproject.php',
+                    url: 'del-subproject.php',
                     type: 'POST',
                     data: { id:id },
                     success: function(response){
@@ -32,7 +31,7 @@ $(document).ready(function(){
                             });
                             
                         }else{
-                        // alert('Invalid ID.'+id);
+                          //  console.log('hellojava'+response);
                         Swal.fire({
                                 icon: 'error',
                                 title: 'อุ๊บบ...',
@@ -46,10 +45,5 @@ $(document).ready(function(){
                 });
             }
         })
-        
-        if (confirmalert == true) {
-            // AJAX Request
-            cosole.log('hello')
-        }
     });
 });

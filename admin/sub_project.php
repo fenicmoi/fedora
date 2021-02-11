@@ -106,7 +106,10 @@ $row = dbFetchAssoc($result);
                                                 <td>".$row['reciveOffice']."</td>
                                                 <td>".$row['status']."</td>";?>
                                                 <td>
-                                                    <a  href="?menu=editSub&sid=<?php echo $row['sid'];?>" class="btn btn-outline-warning btn-sm btn-block">
+                                                    <a class="btn btn-outline-warning btn-sm btn-block" 
+                                                        onclick = "load_edit('<?php print $row['sid']?>')" 
+                                                        data-toggle="modal" 
+                                                        data-target="#modelEdit">
                                                         <i class="fas fa-pencil-alt"></i> 
                                                     </a> 
                                                 </td>
@@ -126,11 +129,43 @@ $row = dbFetchAssoc($result);
     </div><!-- row  -->
 </div> <!-- container 2 -->
 
+<!-- Modal Display Edit -->
+<div class="modal fade" id="modelEdit" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning">
+                        <h5 class="modal-title"><i class="fas fa-pen"></i> แก้ไขรายการครุภัณฑ์ </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <div class="modal-body">
+                         <div id="divDataview"> </div> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
 
 <?php 
  include("modal_subproject.php");
- include("insert_subproject.php");
+//  include("insert_subproject.php");
+ include("subproject_managment.php")
  ?>
+
+<script>
+function load_edit(sid){
+	 var sdata = {
+         sid : sid,
+     };
+	$("#divDataview").load("admin/edit-supproject.php",sdata);
+}
+</script>
+
+
 
 <script src="js/tree-view.js"></script>
 <script src="js/delete-subproject.js"></script>
