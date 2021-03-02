@@ -45,7 +45,14 @@ $sumGroup = dbNumRows($result);
                                     </div>
                                     <div class="col-sm mt-50">
                                         <h3>ระบบฐานข้อมูลทะเบียนทรัพย์สิน<?php echo province;?></h3>
-                                        <p>โครงการจังหวัด/โครงการกลุ่มจังหวัด</p>
+                                        <br>
+                                        <p><kbd>ข้อมูลผู้ใช้</kbd></p>
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <td>หน่วยงาน</td>
+                                                <td><?php echo $_SESSION["office"];?></td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                                 <div class="row mt-3">

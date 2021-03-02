@@ -15,6 +15,7 @@ session_start();
                       $_SESSION["UserID"] = $row["ID"];
                       $_SESSION["User"] = $row["Firstname"]." ".$row["Lastname"];
                       $_SESSION["Userlevel"] = $row["Userlevel"];
+                      $_SESSION["office"] = $row['office'];
                      
 
                       if($_SESSION["Userlevel"]=="A"){ 

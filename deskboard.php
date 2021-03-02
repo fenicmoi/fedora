@@ -1,6 +1,8 @@
 <?php   
 session_start();
 $UserID =  $_SESSION['UserID'];
+$UserLevel = $_SESSION["Userlevel"];
+
 
 if($userID=''){
     echo "<script>window.location.href='index.php'</script>";
@@ -29,6 +31,7 @@ $sumGroup = dbNumRows($result);
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">deskboard</li>
+                        <li class="breadcrumb-item"><?php echo "helloajva". $UserLevel;?></li>
                     </ol>
                 </nav>
                 <div class="row">

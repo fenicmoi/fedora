@@ -1,7 +1,7 @@
 <?php   
 //session_start();
 $UserID =  $_SESSION['UserID'];
-
+$level = $_SESSION["Userlevel"];
 if($userID=''){
     echo "<script>window.location.href='index.php'</script>";
 }
@@ -60,10 +60,16 @@ if($userID=''){
                                                 data-toggle="modal" 
                                                 data-target="#modelEdit">
                                                 <i class="fas fa-pencil-alt"></i> 
-                                            </a> 
+                                            </a>  
                                          </td>
                                          <td>
-                                            <span class='delete btn btn-danger btn-sm text-white' data-id='<?php echo $row['pid']; ?>'><i class="fas fa-trash"></i></span>
+                                            <?php 
+                                                if($level == "M"){?>
+                                                 <span class='delete btn btn-danger btn-sm text-white' data-id='<?php echo $row['pid']; ?>' disabled><i class="fas fa-trash"></i></span>
+                                               <?php }else{ ?>
+                                                <span class='delete btn btn-danger btn-sm text-white' data-id='<?php echo $row['pid']; ?>'><i class="fas fa-trash"></i></span>
+                                               <?php }
+                                            ?>
                                         </td>
                                      </tr>
                            <?php } ?>

@@ -60,15 +60,24 @@ $resultYear = dbQuery($sqlYear);
                             </div>
                         </div>
                     </div>
+                    <?php   
+                        $sql ="SELECT  ID, office FROM user ORDER BY ID";
+                        $result = dbQuery($sql);
+
+                    ?>
                     <div class="form-group">            
                         <div class="input-group mb3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">หน่วยรับผิดชอบ</span>
                             </div>
-                            <input type="text" name="sel_office" id="sel_office" class="form-control" value="<?=$row['uid'];?>">
+                            <select class="select2-single" name="sel_office" id="sel_office">
+                              <?php  
+                                while($row = dbFetchArray($result)){?>
+                                    <option value="<?php echo $row['ID'];?>"><?php echo $row['office'];?></option>
+                              <?php }?>
+                            </select>
                         </div>
                     </div>
-
                     <input type="hidden" name="pid" id="pid" value="<?=$pid;?>">
                     </div>
                     </div>

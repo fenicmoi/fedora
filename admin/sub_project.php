@@ -1,6 +1,7 @@
 <?php   
 
 //create pdf
+/*
 require_once __DIR__ . '../../vendor/autoload.php';
 
 // เพิ่ม Font ให้กับ mPDF
@@ -20,7 +21,7 @@ $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp',
 ob_start(); // Start get HTML code
 // end create pdf
 
-
+*/
 
 
 $pid = $_GET['pid'];
@@ -81,7 +82,7 @@ $row = dbFetchAssoc($result);
                     <a href="?menu=project" class="btn btn-primary  float-right">
                         <i class="fas fa-home"></i> กลับหน้าโครงการ
                     </a>
-                    <a class="btn btn-info float-right" href="report1.php?pid=<?=$pid?>" target="_blank"><i class="fas fa-print"></i> พิมพ์รายงาน</a>
+                    <!-- <a class="btn btn-info float-right" href="report1.php?pid=<?=$pid?>" target="_blank"><i class="fas fa-print"></i> พิมพ์รายงาน</a> -->
                     <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId">
                         <i class="fas fa-plus"></i> เพิ่มรายการ
                     </button>
