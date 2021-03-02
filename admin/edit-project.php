@@ -64,9 +64,10 @@ $resultYear = dbQuery($sqlYear);
                             <div class="input-group-prepend">
                                 <span class="input-group-text">หน่วยรับผิดชอบ</span>
                             </div>
-                            <select class="select2-single form-control" name="sel_office" id="sel_office">
+                            <select class="select2-single" name="sel_office" id="sel_office">
                               <?php  
                                 while($row = dbFetchArray($result)){?>
+                                
                                     <option value="<?php echo $row['ID'];?>"><?php echo $row['office'];?></option>
                               <?php }?>
                             </select>

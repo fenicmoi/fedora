@@ -31,9 +31,10 @@ if($userID=''){
                         </thead>
                         <tbody>
                         <?php   
-                            $sql ="SELECT  p.*, y.yname FROM project  p
+                            $sql ="SELECT  p.*, y.yname, u.office FROM project  p
                                    INNER JOIN  sys_year  y   ON (p.yid = y.yid) 
-                                   WHERE del = 1
+                                   INNER JOIN user u ON (p.uid = u.ID)
+                                   WHERE del = 1 AND  uid = ".$_SESSION["UserID"]."
                                    ORDER BY  pid DESC";
                             $result = dbQuery($sql);
                             while ($row = dbFetchArray($result)) {?>
@@ -51,7 +52,7 @@ if($userID=''){
                                             ?>
                                         </td>
                                          <td><?php echo $row['yname'];?></td>
-                                         <td><?php echo $row['uid'];?></td>
+                                         <td><?php echo $row['office'];?></td>
                                          <td>
                                             <a class="btn btn-outline-warning btn-sm btn-block" 
                                                 onclick = "load_edit('<?=$row['pid']?>')" 
@@ -63,7 +64,7 @@ if($userID=''){
                                          <td>
                                             <?php 
                                                 if($level == "M"){?>
-                                                 <span class='delete btn btn-danger btn-sm text-white' data-id='<?php echo $row['pid']; ?>' disabled><i class="fas fa-trash"></i></span>
+                                                <i class="fas fa-lock"></i>
                                                <?php }else{ ?>
                                                 <span class='delete btn btn-danger btn-sm text-white' data-id='<?php echo $row['pid']; ?>'><i class="fas fa-trash"></i></span>
                                                <?php }

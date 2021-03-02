@@ -1,6 +1,7 @@
 <?php   
 
 $UserID =  $_SESSION['UserID'];
+$level = $_SESSION["Userlevel"];
 
 if($userID=''){
     echo "<script>window.location.href='index.php'</script>";
@@ -40,7 +41,17 @@ if($userID=''){
                            </thead>
                            <tbody> 
                                 <?php   
-                                    $sql = "SELECT * FROM subproject  WHERE  del <> 0 ORDER BY sid ASC";
+                                    if($_SESSION["Userlevel"] =="A"){ 
+                                        $sql = "SELECT * FROM subproject ORDER BY sid ASC";
+                                    }{
+                                        $sql = "SELECT s.* FROM subproject s 
+                                                INNER JOIN project p ON  p.pid = s.pid 
+                                                INNER JOIN user u ON u.ID = p.uid  
+                                                WHERE p.uid = $UserID
+                                                ORDER BY sid ASC
+                                           ";
+                                    }
+                                   
                                     $result = dbQuery($sql);
                                     $count = 1;
                                     while ($row = dbFetchArray($result)) {
