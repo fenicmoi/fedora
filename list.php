@@ -3,6 +3,7 @@
 $UserID =  $_SESSION['UserID'];
 $level = $_SESSION["Userlevel"];
 
+
 if($userID=''){
     echo "<script>window.location.href='index.php'</script>";
 }
@@ -43,7 +44,7 @@ if($userID=''){
                                 <?php   
                                     if($_SESSION["Userlevel"] =="A"){ 
                                         $sql = "SELECT * FROM subproject ORDER BY sid ASC";
-                                    }{
+                                    }else{
                                         $sql = "SELECT s.* FROM subproject s 
                                                 INNER JOIN project p ON  p.pid = s.pid 
                                                 INNER JOIN user u ON u.ID = p.uid  

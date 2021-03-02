@@ -10,23 +10,29 @@
                 <a class="nav-link" href="?menu=project"><i class="fas fa-clipboard-list"></i> โครงการ</a>
             </li>
             <li> <a class="nav-link" href="?menu=list"><i class="fas fa-clipboard-list"></i> รายการครุภัณฑ์</a></li>
-            <li><a class="nav-link" href="?menu=group"><i class="fas fa-cog"></i> กลุ่มครุภัณฑ์</a></li>
-            <li><a class="nav-link" href="?menu=class"><i class="fas fa-cog"></i> ชนิดครุภัณฑ์</a></li>
-            <li><a class="nav-link" href="?menu=type"><i class="fas fa-cog"></i> ประเภทครุภัณฑ์</a></li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle " href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">รายงาน<i class="fas fa-print"></i></a>
-                <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="?menu=repProvince">รายงานงบจังหวัด</a>
-                    <a class="dropdown-item" href="?menu=repGroup">รายงานงบกลุ่มจังหวัด</a>
-                </div>
-            </li> 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle " href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">เอกสาร<i class="fas fa-book"></i></a>
-                <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="paper/manual.pdf" target="_blank">คู่มือกำหนดหมายเลขครุภัณฑ์</a>
-                    <a class="dropdown-item" href="manage_class.php">คู่มือการใช้งานระบบ</a>
-                </div>
-            </li> 
+            <?php 
+              $level = $_SESSION["Userlevel"];
+              if ($level == "A") { ?>
+
+                 <li><a class="nav-link" href="?menu=group"><i class="fas fa-cog"></i> กลุ่มครุภัณฑ์</a></li>
+                 <li><a class="nav-link" href="?menu=class"><i class="fas fa-cog"></i> ชนิดครุภัณฑ์</a></li>
+                 <li><a class="nav-link" href="?menu=type"><i class="fas fa-cog"></i> ประเภทครุภัณฑ์</a></li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle " href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">รายงาน<i class="fas fa-print"></i></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="?menu=repProvince">รายงานงบจังหวัด</a>
+                        <a class="dropdown-item" href="?menu=repGroup">รายงานงบกลุ่มจังหวัด</a>
+                    </div>
+                </li> 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle " href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">เอกสาร<i class="fas fa-book"></i></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="paper/manual.pdf" target="_blank">คู่มือกำหนดหมายเลขครุภัณฑ์</a>
+                        <a class="dropdown-item" href="manage_class.php">คู่มือการใช้งานระบบ</a>
+                    </div>
+                </li>  
+             <?php } ?>
+            
         </ul>
         <form class="form-inline my-2 my-lg-0">
                 <?php   
