@@ -1,10 +1,4 @@
 
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-<!-- <script src="js/jquery-3.5.1.min.js"></script> -->
-
-
 
 <?php  
 
@@ -70,7 +64,7 @@ $resultYear = dbQuery($sqlYear);
                             <div class="input-group-prepend">
                                 <span class="input-group-text">หน่วยรับผิดชอบ</span>
                             </div>
-                            <select class="select2-single" name="sel_office" id="sel_office">
+                            <select class="select2-single form-control" name="sel_office" id="sel_office">
                               <?php  
                                 while($row = dbFetchArray($result)){?>
                                     <option value="<?php echo $row['ID'];?>"><?php echo $row['office'];?></option>
