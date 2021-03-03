@@ -7,15 +7,40 @@ if($userID=''){
 }
 
 ?>
+<script>
+//feach user
+$(document).ready(function(){
+    
+    $("#sel_office").select2({ width: "760px", dropdownCssClass: "bigdrop"});
+    $.ajax({
+        url: 'feachUser.php',
+        type: 'json',
+        data: '',
+        success: function(result){
+            $.each(result, function(i,item){
+                $('#sel_office').append('<option value='+item['ID']+'>'+item['office']+'</option>');
+            });
+        }
+    });
+});
 
+</script>
 
 <div class="container-fluid">
         <div class="card mt-2">
             <div class="card-header">
                 <span class="font-weight-bold"><i class="fas fa-th"></i> โครงการทั้งหมด</span>
-                <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId">
-                    <i class="fas fa-plus"></i> เพิ่มโครงการ
-                </button>
+                <?php 
+                    if($level == "A"){  ?>
+                        <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId">
+                        <i class="fas fa-plus"></i> เพิ่มโครงการ
+                        </button>
+                <?php }else{  ?>
+                        <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId" disabled>
+                        <i class="fas fa-plus"></i> เพิ่มโครงการ
+                        </button>
+                <?php  }?>
+                
     
             </div>
             <div class="card-body">
@@ -31,11 +56,21 @@ if($userID=''){
                         </thead>
                         <tbody>
                         <?php   
-                            $sql ="SELECT  p.*, y.yname, u.office FROM project  p
-                                   INNER JOIN  sys_year  y   ON (p.yid = y.yid) 
-                                   INNER JOIN user u ON (p.uid = u.ID)
-                                   WHERE del = 1 AND  uid = ".$_SESSION["UserID"]."
-                                   ORDER BY  pid DESC";
+                            if ($level == "A") {
+                                $sql ="SELECT  p.*, y.yname, u.office FROM project  p
+                                INNER JOIN  sys_year  y   ON (p.yid = y.yid) 
+                                INNER JOIN user u ON (p.uid = u.ID)
+                                WHERE del = 1 
+                                ORDER BY  pid DESC";
+                            }
+                             elseif($level == "M"){
+                                $sql ="SELECT  p.*, y.yname, u.office FROM project  p
+                                INNER JOIN  sys_year  y   ON (p.yid = y.yid) 
+                                INNER JOIN user u ON (p.uid = u.ID)
+                                WHERE del = 1 AND  uid = ".$_SESSION["UserID"]."
+                                ORDER BY  pid DESC";
+                            }
+                          
                             $result = dbQuery($sql);
                             while ($row = dbFetchArray($result)) {?>
                                 <tr>
@@ -84,6 +119,7 @@ if($userID=''){
         //ปีงบประมาณ  เพื่อใช้ใน modal  ต่าง ๆ
         $sql_y = "SELECT * FROM sys_year  ORDER BY yname DESC";
         $result_y = dbQuery($sql_y);
+
         include("modal_project.php")   //รวบรวม modal  เกี่ยวกับการจัดการ project 
 ?>        
 </div> <!-- end container -->

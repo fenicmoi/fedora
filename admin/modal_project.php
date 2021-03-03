@@ -58,24 +58,16 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <?php   
-                                    //หน่วยรับผิดชอบ
-                                    $sql_user = "SELECT * FROM user ORDER BY id ASC";
-                                    $result_user  = dbQuery($sql_user);
-
-                                ?>
-                                
-                                <div class="form-group">            
-                                    <div class="input-group mb3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">หน่วยรับผิดชอบ</span>
-                                        </div>
-                                        <input type="text" name="sel_office" id="sel_office" class="form-control" value="-" required>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                            <select class="form-control" name="sel_office" id="sel_office" required> 
+                                                <option>โปรดเลือกหน่วยรับผิดชอบ</option>
+                                            </select>
+                                            <p class="form-text text-muted">
+                                                เพิ่มหน่วยรับผิดชอบ
+                                            </p>
                                     </div>
                                 </div>
-
-
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
