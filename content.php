@@ -78,26 +78,42 @@ $sumGroup = dbNumRows($result);
                             </div>
                         </div>
                     </div>
+                    <?php   
+                        $sql = "SELECT * FROM sys_year ORDER BY yname DESC";
+                        $result = dbQuery($sql);
+                    ?>
                     <div class="col-sm-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h3>กราฟแสดงผล</h3>
-                                <h5 class="mt-3">graph1</h5>
-                                <div class="progress">
-                                    <div class="progress-bar w-75 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <h5 class="mt-3">graph2</h5>
-                                <div class="progress">
-                                    <div class="progress-bar w-50 bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <h5 class="mt-3">graph3</h5>
-                                <div class="progress">
-                                    <div class="progress-bar w-100 bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <h5 class="mt-3">graph4</h5>
-                                <div class="progress">
-                                    <div class="progress-bar w-25 bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                               
+                                    <div class="card">
+                                        <img class="card-img-top" src="holder.js/100x180/" alt="">
+                                        <div class="card-body">
+                                            <h4 class="card-title">ค้นหา</h4>
+                                            <p class="card-text">
+                                            <form action="" method="post">
+                                                <div class="form-group">
+                                                  <label for=""></label>
+                                                  <div class="form-group">
+                                                    <label for=""></label>
+                                                    <select class="form-control" name="yid" id="yid">
+                                                        <?php   
+                                                            while($row = dbFetchArray($result)){?>
+                                                              <option value= "<?php echo $row['yid'];?>"><?php echo $row['yname'];?> </option> 
+                                                        <?php  } ?>
+                                                    </select>
+                                                    <small id="helpId" class="text-muted">เลือกปีงบประมาณ</small>
+                                                    <div class="form-group">
+                                                      <label for=""></label>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                            </form>
+                                            </p>
+                                        </div>
+                                    </div>
+                               
+                                
                             </div>
                         </div>
                     </div>
