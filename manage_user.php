@@ -7,7 +7,6 @@ if($userID=''){
 
 ?>
 <script>
-
 $(document).ready(function(){
    //check เลขกลุ่มซ้ำ
    $("#gnumber").keyup(function(){
@@ -27,6 +26,7 @@ $(document).ready(function(){
       }
     });
  });
+
 
 //Insert DB
 $(document).ready(function(){
@@ -48,7 +48,7 @@ $(document).ready(function(){
                             'You clicked the button!',
                             'success'
                             )
-                            window.location='index.php?menu=group';
+                            window.location='manage_group.php';
                         }else if(response == 0) {
                             alert('no');
                         }
@@ -64,31 +64,35 @@ $(document).ready(function(){
         <div class="card">
             <div class="card-header">
                 <span class="font-weight-bold"><i class="fas fa-th-large"></i> จัดการกลุ่มครุภัณฑ์</span>
-                <button type="button" class="btn btn-warning float-right" data-toggle="modal" data-target="#modelId">
+                <button type="button" class="btn btn-warning float-right" data-toggle="modal" data-target="#modalUser">
                     <i class="fas fa-plus"></i> เพิ่มกลุ่ม
                 </button>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover" id="myTable">
                         <thead>
-                            <th>หมายเลขกลุ่ม</th>
-                            <th>ชื่อกลุ่ม (GROUP)</th>
-                            <th>จำนวนชนิด (Class)</th>
+                            <th>ID</th>
+                            <th>ชื่อส่วนราชการ</th>
+                            <th>ชื่อ</th>
+                            <th>นามสกุล</th>
+                            <th>สิทธิ์</th>
+                            <th>Username</th>
+                            <th>Password</th>
                             <th><i class="fas fa-cog"></i></th>
                         </thead>
                         <tbody>
                         <?php   
-                            $sql ="SELECT * FROM st_group ORDER BY gid DESC";
+                            $sql ="SELECT * FROM user ORDER BY ID DESC";
                             $result = dbQuery($sql);
                             while ($row = dbFetchArray($result)) {
-                                $gid = $row['gid'];
-                                $sqlcount = "SELECT gid FROM st_class WHERE gid = $gid";                  //นับจำนวน  class 
-                                $resultCount = dbQuery($sqlcount);
-                                $numrow = dbNumRows($resultCount);
                                 echo "<tr>
-                                         <td>".$row['gnumber']."</td>
-                                         <td>".$row['gname']."</td>
-                                         <td>".$numrow ."</td>
+                                         <td>".$row['ID'] ."</td>
+                                         <td>".$row['office']."</td>
+                                         <td>".$row['Firstname']."</td>
+                                         <td>".$row['Lastname'] ."</td>
+                                         <td>".$row['Userlevel'] ."</td>
+                                         <td>".$row['Username'] ."</td>
+                                         <td>".$row['Password'] ."</td>
                                          <td><button class='btn btn-outline-dark btn-sm'><i class='fas fa-pencil-alt'></i></button></td>
                                      </tr>";
                             }
@@ -101,9 +105,11 @@ $(document).ready(function(){
             </div>
         </div> <!-- card -->
 
-    
+
+     
+        
         <!-- Modal -->
-        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal fade" id="modalUser" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header bg-info">

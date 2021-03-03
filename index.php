@@ -30,6 +30,8 @@ if($menu =='home'){
     include("user/sub_project.php");
 }elseif($menu == "editSub") {
     include("admin/edit-supproject.php");
+}elseif($menu == "user"){
+    include("manage_user.php");
 }
 
 ?>
