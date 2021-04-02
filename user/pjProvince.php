@@ -32,9 +32,11 @@
                                 </thead>
                                 <tbody>
                                 <?php   
-                                    $sql ="SELECT  p.*, y.yname FROM project  p
+                                    $sql ="SELECT  p.*, u.office, y.yname FROM project  p
                                            INNER JOIN  sys_year  y   ON (p.yid = y.yid) 
+                                           INNER JOIN user u ON (p.uid = u.ID)
                                            ORDER BY  p.pid DESC";
+                                   // echo $sql;
                                     $result = dbQuery($sql);
                                     while ($row = dbFetchArray($result)) {?>
                                         <tr>
@@ -51,7 +53,7 @@
                                                     ?>
                                                 </td>
                                                 <td><?php echo $row['yname'];?></td>
-                                                <td><?php echo $row['uid'];?></td>
+                                                <td><?php echo $row['office'];?></td>
                                                 <td><a href="sub_project.php?pid=<?=$row['pid']?>" class="btn btn-outline-primary btn-block btn-sm"><i class="fas fa-eye"></i> </a></td>
                                             </tr>
                                 <?php } ?>

@@ -25,7 +25,8 @@ ob_start(); // Start get HTML code
 
 
 $pid = $_GET['pid'];
-$sql = "SELECT p.*, y.yname FROM project  as p
+$sql = "SELECT p.*, u.office, y.yname FROM project  as p
+        INNER JOIN user as u ON u.ID = p.uid
         INNER JOIN sys_year as y  ON  p.yid = y.yid  
         WHERE p.pid = $pid";
 $result = dbQuery($sql);
@@ -45,7 +46,7 @@ $row = dbFetchAssoc($result);
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">เจ้าของโครงการ</span>
                             </div>
-                            <input type="text"  class="form-control" value="<?=$row['uid'];?>" disabled>
+                            <input type="text"  class="form-control" value="<?=$row['office'];?>" disabled>
                             <div class="input-group-prepend">
                                 <span class="input-group-text">แหล่งงบประมาณ</span>
                             </div>
