@@ -6,12 +6,17 @@ include("../library/database.php");
 include("../library/function.php");
 $pid = $_POST['pid'];
 
+//data from project
 $sql = "SELECT * FROM project WHERE pid = $pid";
 $result = dbQuery($sql);
 $row = dbFetchAssoc($result);
+$yid = $row['yid']; 
 
-$sqlYear = "SELECT * FROM sys_year ORDER BY  yname DESC";
+
+//ดึง พ.ศ.  ขึ้นมา
+$sqlYear = "SELECT * FROM sys_year";
 $resultYear = dbQuery($sqlYear);
+
 
 ?>
 
@@ -22,10 +27,15 @@ $resultYear = dbQuery($sqlYear);
                             <span class="input-group-text">ปีงบประมาณ</span>
                         </div>
                         <select class="form-control col-4" name="sel_year" id="sel_year">
-                        <?php    
-                            while($row_y = dbFetchArray($resultYear)){?>
-                                <option  id='ylist' value='<?=$row_y['yid'];?>''><?=$row_y['yname']?></option>
-                        <?php }?>
+                            <?php    
+                                while($row_y = dbFetchArray($resultYear)){
+
+                                    if($row_y['yid'] == $yid ){ ?>
+                                        <option  id='ylist' value='<?=$row_y['yid'];?>' selected><?=$row_y['yname']?></option>
+                                    <?php } else { ?>
+                                        <option  id='ylist' value='<?=$row_y['yid'];?>'><?=$row_y['yname']?></option>
+                                    <?php } ?>
+                            <?php }?>
                         </select>
 
                         <div class="input-group-prepend">
@@ -55,9 +65,9 @@ $resultYear = dbQuery($sqlYear);
                         </div>
                     </div>
                     <?php   
-                        $sql ="SELECT  ID, office FROM user ORDER BY ID";
-                        $result = dbQuery($sql);
-
+                        //ดึงชื่อหน่วยงาน
+                        $sqlUser =  "SELECT * FROM user";
+                        $resultUser = dbQuery($sqlUser);
                     ?>
                     <div class="form-group">            
                         <div class="input-group mb3">
@@ -66,10 +76,16 @@ $resultYear = dbQuery($sqlYear);
                             </div>
                             <select class="select2-single" name="sel_office" id="sel_office">
                               <?php  
-                                while($row = dbFetchArray($result)){?>
-                                
-                                    <option value="<?php echo $row['ID'];?>"><?php echo $row['office'];?></option>
-                              <?php }?>
+                                while($rowUser = dbFetchArray($resultUser)){
+
+                                    if($row['uid'] == $rowUser['ID']){?>
+                                        <option value="<?php echo $rowUser['ID'];?>" selected><?php echo $rowUser['office'];?></option>
+                                    <?php }else{ ?>
+                                            <option value="<?php echo $rowUser['ID'];?>" ><?php echo $rowUser['office'];?></option>
+                                    <?php  
+                                    } 
+                                } 
+                              ?>
                             </select>
                         </div>
                     </div>

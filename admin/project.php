@@ -8,7 +8,7 @@ if($userID=''){
 
 ?>
 <script>
-//feach user
+//feach user  ใช้ในหน้าจอ  เพิ่ม  project
 $(document).ready(function(){
     
     $("#sel_office").select2({ width: "760px", dropdownCssClass: "bigdrop"});
@@ -30,16 +30,11 @@ $(document).ready(function(){
         <div class="card mt-2">
             <div class="card-header">
                 <span class="font-weight-bold"><i class="fas fa-th"></i> โครงการทั้งหมด</span>
-                <?php 
-                    if($level == "A"){  ?>
+               
                         <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId">
                         <i class="fas fa-plus"></i> เพิ่มโครงการ
                         </button>
-                <?php }else{  ?>
-                        <button type="button" class="btn btn-warning  float-right" data-toggle="modal" data-target="#modelId" disabled>
-                        <i class="fas fa-plus"></i> เพิ่มโครงการ
-                        </button>
-                <?php  }?>
+                
                 
     
             </div>

@@ -61,10 +61,10 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                             <select class="form-control" name="sel_office" id="sel_office" required> 
-                                                <option>โปรดเลือกหน่วยรับผิดชอบ</option>
+                                                <option></option>
                                             </select>
                                             <p class="form-text text-muted">
-                                                เพิ่มหน่วยรับผิดชอบ
+                                                เพิ่มหน่วยรับงบประมาณ
                                             </p>
                                     </div>
                                 </div>
