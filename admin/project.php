@@ -45,7 +45,8 @@ $(document).ready(function(){
                             <th>ชื่อโครงการ/กิจกรรม</th>
                             <th>งบประมาณ</th>
                             <th>ปีงบประมาณ</th>
-                            <th>หน่วยรับผิดชอบ</th>
+                            <th>หน่วยรับงบประมาณ</th>
+                            <th>หน่วยดำเนินการร่วม</th>
                             <th>แก้ไข</th>
                             <th>ลบ</th>
                         </thead>
@@ -83,6 +84,7 @@ $(document).ready(function(){
                                         </td>
                                          <td><?php echo $row['yname'];?></td>
                                          <td><?php echo $row['office'];?></td>
+                                         <td><?php echo $row['subcontact'];?></td>
                                          <td>
                                             <a class="btn btn-outline-warning btn-sm btn-block" 
                                                 onclick = "load_edit('<?=$row['pid']?>')" 
@@ -91,6 +93,7 @@ $(document).ready(function(){
                                                 <i class="fas fa-pencil-alt"></i> 
                                             </a>  
                                          </td>
+                                      
                                          <td>
                                             <?php 
                                                 if($level == "M"){?>
