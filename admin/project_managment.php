@@ -12,9 +12,10 @@
         $money = $_POST['money'];
         $uid = $_POST['sel_office'];
         $owner = $_POST['owner'];    //งบจังหวัด
+        $subcontact = $_POST['subcontact']; //หน่วยดำเนินการร่วม
         
 
-        $sql = "INSERT INTO project(recid, name, money, yid, uid, owner) VALUES($num, '$name', $money, $yid, '$uid', '$owner')";
+        $sql = "INSERT INTO project(recid, name, money, yid, uid, owner) VALUES($num, '$name', $money, $yid, '$uid', '$owner', '$subcontact)";
        // print $sql;
         $result =  dbQuery($sql);
 

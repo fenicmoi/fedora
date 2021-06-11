@@ -44,7 +44,7 @@ $row = dbFetchAssoc($result);
                     <h4 class="card-title"><?=$row['name'];?></h4>
                     <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">เจ้าของโครงการ</span>
+                                <span class="input-group-text" id="basic-addon1">หน่วยรับงบประมาณ</span>
                             </div>
                             <input type="text"  class="form-control" value="<?=$row['office'];?>" disabled>
                             <div class="input-group-prepend">

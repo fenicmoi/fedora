@@ -64,10 +64,20 @@
                                                 <option></option>
                                             </select>
                                             <p class="form-text text-muted">
-                                                เพิ่มหน่วยรับงบประมาณ
+                                               เลือกหน่วยรับงบประมาณ
                                             </p>
                                     </div>
                                 </div>
+
+                                <div class="form-group">            
+                                    <div class="input-group mb3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">หน่วยดำเนินการร่วม</span>
+                                        </div>
+                                        <input type="text" name="subcontact" id="subcontact" class="form-control"  required="required">
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
